@@ -87,33 +87,18 @@ export default DataTable;
 
 # List Buckets:
 $ aws s3 ls
-2022-02-23 18:00:05 s3.cloudfront.d3.js
-2021-06-04 13:43:20 s3.cloudfront.grammar.wireframe
-2021-12-06 13:36:25 s3.cloudfront.iqe.wireframe
-2023-04-13 13:24:20 s3.cloudfront.react-app-001
-2024-08-02 12:40:33 s3.cloudfront.react-data-catalog
-2022-02-08 10:14:45 s3.cloudfront.swc.wireframe
 
 
 # List the Contents of the S3 Bucket:
 $ aws s3 ls s3://s3.cloudfront.react-data-catalog
-                           PRE .ssh/
-                           PRE data-catalog/
 
 # Copy Files to S3 Bucket:
 ###   aws s3 cp your-file.txt s3://your-bucket-name/
 ###   aws s3 cp your-directory/ s3://your-bucket-name/ --recursive
 
-$ aws s3 cp backend/ s3://s3.cloudfront.react-data-catalog/data-catalog/backend/ --recursive
-$ aws s3 cp src/ s3://s3.cloudfront.react-data-catalog/data-catalog/src --recursive
-$ aws s3 cp README_PROJECT_NOTES.md s3://s3.cloudfront.react-data-catalog/data-catalog/README_PROJECT_NOTES.md
-
 
 Sync Local Directory to S3 Bucket:
 ###   aws s3 sync your-local-directory/ s3://your-bucket-name/
-$ aws s3 sync src/ s3://s3.cloudfront.react-data-catalog/data-catalog/src
-$ aws s3 sync backend/ s3://s3.cloudfront.react-data-catalog/data-catalog/backend
-
 
 ========================================
 - Try t haws update command
