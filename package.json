@@ -2,7 +2,7 @@
   "name": "data-catalog",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/robert-bobkoskie/data_catalog.git",
+  "homepage": "https://robert-bobkoskie.github.io/data_catalog",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "axios": "^1.7.2",
