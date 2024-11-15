@@ -1,0 +1,68 @@
+/* Donuts.css */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: auto; /* Ensure the body allows for scrolling */
+  font-size: 16px; /* Set a base font size for rem units */
+}
+
+.donuts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh; /* Ensure the container takes at least the full viewport height */
+  background-color: #f0f0f0;
+  position: relative;
+}
+
+.coffee-pot {
+  position: absolute;
+  top: 1rem; /* Use rem units for consistent spacing */
+  left: 1rem; /* Use rem units for consistent spacing */
+  width: 150px; /* Reduced size of the coffee pot */
+  height: auto;
+}
+
+.donut-image {
+  width: 250px; /* Reduced size of the donut image */
+  height: 250px;
+  cursor: pointer;
+  margin-top: 5rem; /* Use rem units for consistent spacing */
+}
+
+.coffee-cups-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-gap: 1rem; /* Use rem units for consistent spacing */
+  margin-top: 2rem; /* Use rem units for consistent spacing */
+  width: 80%; /* Adjust as needed to fit the desired layout */
+}
+
+.coffee-cup {
+  margin: 0.5rem; /* Use rem units for consistent spacing */
+}
+
+.coffee-image {
+  width: 120px;
+  height: 120px;
+}
+
+.floating-cup {
+  position: absolute;
+  top: 1rem; /* Starting from coffee pot position */
+  left: 1rem; /* Starting from coffee pot position */
+  animation: float-in 2s ease-in-out forwards;
+}
+
+@keyframes float-in {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(calc(45rem + 25px), calc(35rem - 200px)); /* Adjusted for consistent spacing */
+    opacity: 1;
+  }
+}

@@ -1,0 +1,60 @@
+/* Delta_Dashboard.css */
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.data-table th,
+.data-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.data-table th {
+  background-color: #f2f2f2;
+}
+
+.table-container {
+  overflow-y: auto;
+  overflow-x: auto;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  padding-bottom: 20px;
+}
+
+.page-container {
+  padding-bottom: 50px;
+  overflow: auto;
+  height: 100vh; /* Ensure the container takes the full height of the viewport */
+  display: flex;
+  flex-direction: column;
+}
+
+.plot-container {
+  width: 100%;
+  overflow: auto;
+}
+
+.difference-section {
+  margin-bottom: 50px; /* Add space under the differences table */
+}
+
+.content-wrapper {
+  flex: 1; /* This ensures the wrapper takes available space */
+  overflow: auto; /* Allow scrolling */
+}
+
+.aggregated-counts {
+  margin-top: 20px;
+  padding-left: 20px; /* Add some left padding to indent */
+  font-size: 1.2em; /* Increase font size slightly */
+  font-weight: bold; /* Make the text bold */
+  color: #333; /* Change text color */
+}
+
+.aggregated-counts p {
+  margin: 5px 0; /* Add some margin to each paragraph */
+}

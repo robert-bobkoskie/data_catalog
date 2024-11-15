@@ -1,0 +1,137 @@
+/* AboutPage.css */
+
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling on the body */
+}
+
+.about-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  overflow-y: auto; /* Enable vertical scrolling */
+  height: 100vh; /* Ensure the container takes the full height of the viewport */
+  box-sizing: border-box; /* Include padding in the height calculation */
+  padding-bottom: 100px; /* Add padding at the bottom for extra space */
+}
+
+.about-text {
+  position: absolute;
+  top: 0px;
+  left: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px; /* Adjust this to create space below "About" text */
+  position: relative; /* Necessary for positioning the http-request-box and query-box */
+}
+
+.pc-logo img,
+.box-content img {
+  width: 100px; /* Adjust the size as needed */
+  height: auto;
+  margin: 10px;
+}
+
+/* Change cursor to pointer (finger) on hover */
+.pc-logo {
+  cursor: pointer;
+}
+
+.pipe img {
+  width: 50px;
+  height: 80px; /* Adjust the height as needed */
+  margin: 10px 0;
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  padding: 10px;
+  margin: 10px 0;
+  position: relative; /* Necessary for positioning labels */
+  box-sizing: border-box; /* Include padding in the box's dimensions */
+  width: calc(100px + 100%); /* Increase width by 100px */
+  height: calc(100px + 50px);
+}
+
+.box-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Additional CSS for horizontal orientation */
+.box-content.horizontal {
+  flex-direction: row;
+}
+
+/* New CSS for the HTTP Request box */
+.http-request-box {
+  position: absolute;
+  top: 90px; /* Start below the PC logo */
+  left: 0%;
+  transform: translateX(0%);
+  border: 2px solid black;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  box-sizing: border-box;
+  transition: transform 1s ease-in-out; /* Smooth transition */
+}
+
+.http-request-text {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* New CSS for the Query box */
+.query-box {
+  position: absolute;
+  top: 320px; /* Start below the React and Python logos */
+  left: 50%;
+  transform: translateX(0%);
+  border: 2px solid black;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  box-sizing: border-box;
+  transition: transform 1s ease-in-out; /* Smooth transition */
+}
+
+.query-text {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* New CSS for box labels */
+.box-label-left {
+  position: absolute;
+  top: 10px; /* Adjust as needed */
+  left: 10px; /* Adjust as needed */
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.box-label-right {
+  position: absolute;
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
+  font-size: 14px;
+  font-weight: bold;
+}
