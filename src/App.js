@@ -9,7 +9,7 @@ import AboutPage from './pages/AboutPage';
 import EDFOraclePage from './pages/EDFOraclePage';
 import SQLPage from './pages/SQLPage';
 import EDFMSQueryPage from './pages/EDFMSQueryPage';
-import Delta_Dashboard from './pages/Delta_Dashboard';
+import Delta_Dashboard from './pages/DeltaDashboard';
 import Donuts from './pages/Donuts';
 import LandingPage from './pages/LandingPage'; // Import the LandingPage component
 

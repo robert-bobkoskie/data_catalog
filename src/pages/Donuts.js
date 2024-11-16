@@ -9,7 +9,6 @@ import coffeePot from '../assets/images/Coffee_Pot.gif';
 const Donuts = () => {
   const [coffeeCups, setCoffeeCups] = useState([]);
   const [floatingCups, setFloatingCups] = useState([]);
-  const [isFloatingComplete, setIsFloatingComplete] = useState(false);
 
   const handleScreenClick = () => {
     const nextId = coffeeCups.length;
@@ -20,8 +19,6 @@ const Donuts = () => {
       { id: nextId }
     ]);
 
-    setIsFloatingComplete(false);
-
     // Remove floating cup after animation and then add to grid
     setTimeout(() => {
       setFloatingCups((prevCups) => prevCups.filter((cup) => cup.id !== nextId));
@@ -29,7 +26,6 @@ const Donuts = () => {
         ...prevCups,
         { id: nextId }
       ]);
-      setIsFloatingComplete(true);
     }, 2000); // Match the duration of the CSS animation
   };
 

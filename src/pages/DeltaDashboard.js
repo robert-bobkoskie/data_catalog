@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { csv } from 'd3-fetch';
+import Papa from 'papaparse';
 import { XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LineSeries, Hint, Highlight } from 'react-vis';
 import 'react-vis/dist/style.css';
-import './Delta_Dashboard.css';
+import './DeltaDashboard.css';
 
 class DataTable extends Component {
   render() {
@@ -38,11 +38,23 @@ class Delta_Dashboard extends Component {
   }
 
   componentDidMount() {
-    // Fetch the CSV data using d3-fetch
-    csv('/data/mock_adi_delta_table_data.csv').then(data => {
-      const validData = data.filter(row => !isNaN(new Date(row.TIMESTAMP).getTime()));
-      this.setState({ data: validData }, () => this.processChartData(validData));
-    }).catch(error => console.error('Error fetching the CSV file:', error));
+    fetch('/mock_adi_delta_table_data.csv')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.text();
+      })
+      .then(csvText => {
+        Papa.parse(csvText, {
+          header: true,
+          complete: (results) => {
+            const validData = results.data.filter(row => !isNaN(new Date(row.TIMESTAMP).getTime()));
+            this.setState({ data: validData }, () => this.processChartData(validData));
+          }
+        });
+      })
+      .catch(error => console.error('Error fetching the CSV file:', error));
   }
 
   processChartData = (data) => {
@@ -148,6 +160,7 @@ class Delta_Dashboard extends Component {
       { Header: 'CUST_ID', accessor: 'CUST_ID' },
     ];
 
+    // Filtered data for the differences table
     const filteredDifferences = filteredData.filter(row => row.DIFFERENCES);
 
     return (
