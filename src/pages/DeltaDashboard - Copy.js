@@ -1,5 +1,3 @@
-/* DeltaDashboard.js */
-
 import React, { Component } from 'react';
 import Papa from 'papaparse';
 import { XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LineSeries, Hint, Highlight } from 'react-vis';
@@ -27,7 +25,7 @@ class DataTable extends Component {
   }
 }
 
-class DeltaDashboard extends Component {
+class Delta_Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,7 +38,7 @@ class DeltaDashboard extends Component {
   }
 
   componentDidMount() {
-    fetch(`${process.env.PUBLIC_URL}/mock_adi_delta_table_data.csv`)
+    fetch('/mock_adi_delta_table_data.csv')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok ' + response.statusText);
@@ -220,4 +218,4 @@ class DeltaDashboard extends Component {
   }
 }
 
-export default DeltaDashboard;
+export default Delta_Dashboard;
