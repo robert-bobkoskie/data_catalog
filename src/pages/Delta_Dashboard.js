@@ -41,11 +41,17 @@ class Delta_Dashboard extends Component {
 
   componentDidMount() {
     fetch('/mock_adi_delta_table_data.csv')
-      .then(response => response.text())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.text();
+      })
       .then(csvText => {
         Papa.parse(csvText, {
           header: true,
           complete: (results) => {
+            console.log('Parsed CSV data:', results.data);
             const validData = results.data.filter(row => !isNaN(new Date(row.TIMESTAMP).getTime()));
             this.setState({ data: validData }, () => this.processChartData(validData));
           }
@@ -157,7 +163,6 @@ class Delta_Dashboard extends Component {
       { Header: 'CUST_ID', accessor: 'CUST_ID' },
     ];
 
-    // Filtered data for the differences table
     const filteredDifferences = filteredData.filter(row => row.DIFFERENCES);
 
     return (
