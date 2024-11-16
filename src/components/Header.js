@@ -16,7 +16,7 @@ function Header() {
   };
 
   const handleDonutClick = () => {
-    navigate('/src/pages/Donuts.css');
+    navigate('/donuts'); // Update the navigation path
   };
 
   return (
