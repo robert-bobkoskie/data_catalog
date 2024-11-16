@@ -1,5 +1,3 @@
-/* Delta_Dashboard.js */
-
 import React, { Component } from 'react';
 import Papa from 'papaparse';
 import { XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LineSeries, Hint, Highlight } from 'react-vis';
@@ -41,7 +39,12 @@ class Delta_Dashboard extends Component {
 
   componentDidMount() {
     fetch('/mock_adi_delta_table_data.csv')
-      .then(response => response.text())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.text();
+      })
       .then(csvText => {
         Papa.parse(csvText, {
           header: true,
