@@ -1,4 +1,4 @@
-const { override, overrideDevServer } = require('customize-cra');
+const { overrideDevServer } = require('customize-cra');
 
 module.exports = {
   webpack: function(config, env) {
@@ -21,7 +21,7 @@ module.exports = {
         return middlewares;
       };
 
-      // Fix the allowedHosts configuration
+      // Add allowedHosts to the configuration
       config.allowedHosts = ['localhost'];
 
       return config;
