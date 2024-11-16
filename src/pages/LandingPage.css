@@ -1,0 +1,19 @@
+/* src/pages/LandingPage.css */
+
+.landing-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.landing-header {
+  font-size: 2.5em;
+  color: #2c3e50;
+}
+
+.landing-text {
+  font-size: 1.2em;
+  color: #34495e;
+  line-height: 1.6em;
+  margin-top: 20px;
+  text-align: justify; /* Add this line to justify the text */
+}
