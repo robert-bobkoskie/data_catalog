@@ -11,12 +11,13 @@ import EDFOraclePage from './pages/EDFOraclePage';
 import SQLPage from './pages/SQLPage';
 import EDFMSQueryPage from './pages/EDFMSQueryPage';
 import Delta_Dashboard from './pages/Delta_Dashboard';
-import Donuts from './pages/Donuts'; 
-import LandingPage from './pages/LandingPage'; 
+import Donuts from './pages/Donuts'; // Import the Donuts component
 
 function App() {
   return (
-    <Router><div><Header /><Routes><Route exact path="/" element={<LandingPage />} /><Route path="/home" element={<HomePage />} /><Route path="/about" element={<AboutPage />} /><Route path="/data" element={<EDFOraclePage />} /><Route path="/sql" element={<SQLPage />} /><Route path="/edf-ms-oracle" element={<EDFMSQueryPage />} /><Route path="/dashboards" element={<Delta_Dashboard />} /><Route path="/donuts" element={<Donuts />} /><Route path="*" element={<Navigate to="/" replace />} /></Routes></div></Router>
+    <Router><div><Header /><Routes><Route exact path="/" element={<HomePage />} /><Route path="/about" element={<AboutPage />} /><Route path="/data" element={<EDFOraclePage />} /><Route path="/sql" element={<SQLPage />} /><Route path="/edf-ms-oracle" element={<EDFMSQueryPage />} /><Route path="/dashboards" element={<Delta_Dashboard />} /><Route path="/src/pages/Donuts.css" element={<Donuts />} /> {/* Add the new route */}
+          <Route path="*" element={<Navigate to="/src/pages/Donuts.css" replace />} /> {/* Add a default route for testing */}
+        </Routes></div></Router>
   );
 }
 
