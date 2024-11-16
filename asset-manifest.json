@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/data_catalog/static/css/main.9d1ac6dc.css",
-    "main.js": "/data_catalog/static/js/main.9f5fceb2.js",
+    "main.js": "/data_catalog/static/js/main.6161be67.js",
     "static/js/453.0cba6432.chunk.js": "/data_catalog/static/js/453.0cba6432.chunk.js",
     "static/media/sign_contract_homer.webp": "/data_catalog/static/media/sign_contract_homer.536e8c2d59cc4aada07a.webp",
     "static/media/Coffee_Pot.gif": "/data_catalog/static/media/Coffee_Pot.2e5355063021fcccab61.gif",
@@ -16,11 +16,11 @@
     "static/media/Python_Logo.jfif": "/data_catalog/static/media/Python_Logo.1b38f1bbf2da4be0e94b.jfif",
     "index.html": "/data_catalog/index.html",
     "main.9d1ac6dc.css.map": "/data_catalog/static/css/main.9d1ac6dc.css.map",
-    "main.9f5fceb2.js.map": "/data_catalog/static/js/main.9f5fceb2.js.map",
+    "main.6161be67.js.map": "/data_catalog/static/js/main.6161be67.js.map",
     "453.0cba6432.chunk.js.map": "/data_catalog/static/js/453.0cba6432.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9d1ac6dc.css",
-    "static/js/main.9f5fceb2.js"
+    "static/js/main.6161be67.js"
   ]
 }
