@@ -9,7 +9,7 @@
 }
 
 .logo {
-  height: 40px;
+  height: 50px; /* Increased height */
   cursor: pointer; /* Change cursor to pointer on hover */
   transition: opacity 0.3s ease; /* Smooth transition for opacity */
 }
@@ -43,7 +43,7 @@ nav ul li {
 nav ul li a {
   color: white;
   text-decoration: none;
-  font-size: 1em; /* Same font size for all elements */
+  font-size: 2.0em; /* Increased font size */
 }
 
 nav ul li a:hover {
@@ -69,7 +69,7 @@ nav ul li .ladder-display .dropdown-item {
   padding: 5px 5px; /* Increase padding for better spacing */
   color: black;
   text-decoration: none;
-  font-size: 1.1em; /* Increase font size */
+  font-size: 1.2em; /* Increased font size */
   white-space: nowrap; /* Ensure text does not wrap */
   transition: all 0.3s ease; /* Smooth transition for hover effect */
 }
@@ -77,11 +77,11 @@ nav ul li .ladder-display .dropdown-item {
 nav ul li .ladder-display .dropdown-item:hover {
   background-color: #f0f0f0; /* Change background color on hover */
   color: #000; /* Ensure the text color is black on hover */
-  font-size: 1.3em; /* Increase font size on hover */
+  font-size: 1.4em; /* Increase font size on hover */
 }
 
 .donut {
-  height: 30px; /* Adjust the size of the donut image */
+  height: 40px; /* Increased height */
   cursor: pointer; /* Change cursor to pointer on hover */
   margin-right: 10px; /* Space between the donut and About link */
   transition: opacity 0.3s ease; /* Smooth transition for opacity */
@@ -94,7 +94,7 @@ nav ul li .ladder-display .dropdown-item:hover {
 .epsilon {
   position: relative;
   top: -25px;
-  font-size: 3.0em; /* Adjust the size of the character */
+  font-size: 3.5em; /* Increased font size */
   color: white; /* Color of the character */
   margin-right: 10px; /* Space between the character and donut */
   cursor: pointer; /* Change cursor to pointer on hover */

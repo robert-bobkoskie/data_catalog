@@ -1,5 +1,3 @@
-/* AboutPage.js */
-
 import React, { useState, useEffect, useRef } from 'react';
 import './AboutPage.css';
 import pcLogo from '../assets/images/PC+Logo.png';
@@ -63,6 +61,12 @@ function AboutPage() {
                 if (requestBox) {
                   requestBox.style.transform = 'translateY(0)';
                 }
+                // Reset both boxes to their initial states
+                setTimeout(() => {
+                  setHttpResponse(false);
+                  setQueryResponse(false);
+                  setVisibleTextBox(1); // Reset to the first text box
+                }, 1000); // Assuming 1s transition duration
               }, 1000); // Assuming 1s transition duration
             }, 1000); // Assuming 1s transition duration
           }, 1000); // Assuming 1s transition duration

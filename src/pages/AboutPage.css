@@ -20,7 +20,7 @@ body, html {
 .main-div {
   display: flex;
   flex-direction: row; /* Changed to row for horizontal alignment */
-  margin-left: 50px; /* Add 20px margin on the left */
+  margin-left: 100px; /* Add 20px margin on the left */
   margin-right: 20px; /* Space between main div and text boxes */
 }
 
@@ -31,10 +31,11 @@ body, html {
 }
 
 .text-box {
+  font-size: 26px;
   border: 2px solid black;
   padding: 10px;
   margin-bottom: 10px;
-  width: 210px; /* Adjust width as needed */
+  width: 420px; /* Adjust width as needed */
   box-sizing: border-box;
   opacity: 0; /* Initially hidden */
   transition: opacity 1s ease-in-out; /* Smooth transition */
@@ -85,7 +86,7 @@ body, html {
   margin: 10px 0;
   position: relative; /* Necessary for positioning labels */
   box-sizing: border-box; /* Include padding in the box's dimensions */
-  width: 300px; /* Adjust width as needed */
+  width: 350px; /* Adjust width as needed */
   height: 175px; /* Adjust height as needed */
 }
 
@@ -106,8 +107,8 @@ body, html {
 /* New CSS for the HTTP Request box */
 .http-request-box {
   position: absolute;
-  top: 90px; /* Start below the PC logo */
-  left: -10%;
+  top: 85px; /* Start below the PC logo */
+  left: -15%;
   transform: translateX(0%);
   border: 2px solid black;
   padding: 10px;
@@ -120,14 +121,14 @@ body, html {
 }
 
 .http-request-text {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
 }
 
 /* New CSS for the Query box */
 .query-box {
   position: absolute;
-  top: 330px; /* Align with the top of the HTTP Request box */
+  top: 315px; /* Align with the top of the HTTP Request box */
   left: calc(100% - 100px); /* Adjust to the right of the HTTP Request box with a gap */
   transform: translateX(0%);
   border: 2px solid black;
@@ -141,7 +142,7 @@ body, html {
 }
 
 .query-text {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
 }
 
@@ -150,7 +151,7 @@ body, html {
   position: absolute;
   top: 10px; /* Adjust as needed */
   left: 10px; /* Adjust as needed */
-  font-size: 14px;
+  font-size: 22px;
   font-weight: bold;
 }
 
@@ -158,6 +159,6 @@ body, html {
   position: absolute;
   top: 10px; /* Adjust as needed */
   right: 10px; /* Adjust as needed */
-  font-size: 14px;
+  font-size: 22px;
   font-weight: bold;
 }
