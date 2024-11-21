@@ -8,46 +8,23 @@ body, html {
 }
 
 .about-page {
+  position: relative;
   display: flex;
-  flex-direction: column; /* Changed to column for vertical alignment */
-  align-items: flex-start; /* Align items to the top */
+  flex-direction: column;
+  align-items: center;
   margin-top: 20px;
+  overflow-y: auto; /* Enable vertical scrolling */
   height: 100vh; /* Ensure the container takes the full height of the viewport */
   box-sizing: border-box; /* Include padding in the height calculation */
   padding-bottom: 100px; /* Add padding at the bottom for extra space */
 }
 
-.main-div {
-  display: flex;
-  flex-direction: row; /* Changed to row for horizontal alignment */
-  margin-left: 50px; /* Add 20px margin on the left */
-  margin-right: 20px; /* Space between main div and text boxes */
-}
-
-.side-text-boxes {
-  display: flex;
-  flex-direction: column;
-  margin-left: 200px; /* Move text boxes to the right by 200px */
-}
-
-.text-box {
-  border: 2px solid black;
-  padding: 10px;
-  margin-bottom: 10px;
-  width: 210px; /* Adjust width as needed */
-  box-sizing: border-box;
-  opacity: 0; /* Initially hidden */
-  transition: opacity 1s ease-in-out; /* Smooth transition */
-}
-
-.text-box.visible {
-  opacity: 1; /* Show the text box */
-}
-
 .about-text {
-  font-size: 32px;
+  position: absolute;
+  top: 0px;
+  left: 10px;
+  font-size: 16px;
   font-weight: bold;
-  margin-bottom: 20px; /* Add margin below the "About" text */
 }
 
 .diagram {
@@ -85,8 +62,8 @@ body, html {
   margin: 10px 0;
   position: relative; /* Necessary for positioning labels */
   box-sizing: border-box; /* Include padding in the box's dimensions */
-  width: 300px; /* Adjust width as needed */
-  height: 175px; /* Adjust height as needed */
+  width: calc(100px + 100%); /* Increase width by 100px */
+  height: calc(100px + 50px);
 }
 
 .box-content {
@@ -98,16 +75,13 @@ body, html {
 /* Additional CSS for horizontal orientation */
 .box-content.horizontal {
   flex-direction: row;
-  justify-content: space-between; /* Distribute items with space between them */
-  width: 100%; /* Ensure the container takes the full width of the box */
-  padding: 0 10px; /* Add padding to the left and right */
 }
 
 /* New CSS for the HTTP Request box */
 .http-request-box {
   position: absolute;
   top: 90px; /* Start below the PC logo */
-  left: -10%;
+  left: 0%;
   transform: translateX(0%);
   border: 2px solid black;
   padding: 10px;
@@ -127,8 +101,8 @@ body, html {
 /* New CSS for the Query box */
 .query-box {
   position: absolute;
-  top: 330px; /* Align with the top of the HTTP Request box */
-  left: calc(100% - 100px); /* Adjust to the right of the HTTP Request box with a gap */
+  top: 315px; /* Start below the React and Python logos */
+  left: 50%;
   transform: translateX(0%);
   border: 2px solid black;
   padding: 10px;
