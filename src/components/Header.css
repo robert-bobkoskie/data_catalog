@@ -90,3 +90,12 @@ nav ul li .ladder-display .dropdown-item:hover {
 .donut:hover {
   opacity: 0.8; /* Slightly reduce opacity on hover */
 }
+
+.epsilon {
+  position: relative;
+  top: -25px;
+  font-size: 3.0em; /* Adjust the size of the character */
+  color: white; /* Color of the character */
+  margin-right: 10px; /* Space between the character and donut */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}

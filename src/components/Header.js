@@ -19,6 +19,10 @@ function Header() {
     navigate('/donuts'); // Navigate to the Donuts page
   };
 
+  const handleCharacterClick = () => {
+    window.open("https://www.google.com", "_blank");
+  };
+
   return (
     <header className="header"><img src={logo} alt="Logo" className="logo" onClick={handleLogoClick} /><nav className="nav-left"><ul><li><Link to="/dashboards">Dashboards</Link></li><li
             ref={dataLinkRef}
@@ -28,7 +32,8 @@ function Header() {
             {showLadder && (
               <div className="ladder-display"><Link to="/data" className="dropdown-item">• EDF (Oracle)</Link><Link to="/edf-ms-oracle" className="dropdown-item">• EDF MS (Mongo)</Link></div>
             )}
-          </li><li><Link to="/sql">SQL</Link></li></ul></nav><nav className="nav-right"><ul><li><img src={donut} alt="Donut" className="donut" onClick={handleDonutClick} /></li><li><Link to="/about">About</Link></li></ul></nav></header>
+          </li><li><Link to="/sql">SQL</Link></li></ul></nav><nav className="nav-right"><ul><li><span className="epsilon" onClick={handleCharacterClick}>&#x03B5;</span></li> {/* Add character with onClick event here */}
+          <li><img src={donut} alt="Donut" className="donut" onClick={handleDonutClick} /></li><li><Link to="/about">About</Link></li></ul></nav></header>
   );
 }
 
