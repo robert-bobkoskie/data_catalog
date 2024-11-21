@@ -20,7 +20,7 @@ function Header() {
   };
 
   const handleCharacterClick = () => {
-    window.open("https://www.google.com", "_blank");
+    window.open("https://robert-bobkoskie.github.io/react_flowers/", "_blank");
   };
 
   return (
