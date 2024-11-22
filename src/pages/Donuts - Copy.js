@@ -5,8 +5,6 @@ import './Donuts.css';
 import donutImage from '../assets/images/donuts.jpg';
 import coffeeImage from '../assets/images/coffee.jpg';
 import coffeePot from '../assets/images/Coffee_Pot.gif';
-import handOpen from '../assets/images/hands_open.png';
-import handClap from '../assets/images/hands_clap.png';
 
 const Donuts = () => {
   const [coffeeCups, setCoffeeCups] = useState([]);
@@ -30,12 +28,6 @@ const Donuts = () => {
         { id: nextId }
       ]);
     }, 2000); // Match the duration of the CSS animation
-
-    // Change cursor to clapping hands on click
-    document.body.style.cursor = `url(${handClap}), auto`;
-    setTimeout(() => {
-      document.body.style.cursor = `url(${handOpen}), auto`;
-    }, 200); // Duration of the clapping animation
   };
 
   const handleMouseMove = (event) => {
@@ -47,10 +39,6 @@ const Donuts = () => {
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
-
-  useEffect(() => {
-    document.body.style.cursor = `url(${handOpen}), auto`;
   }, []);
 
   return (
@@ -82,7 +70,7 @@ const Donuts = () => {
         className="tooltip"
         style={{ top: `${tooltipPosition.y}px`, left: `${tooltipPosition.x}px` }}
       >
-        Clap for coffee
+        Click the page for coffee
       </div></div>
   );
 };

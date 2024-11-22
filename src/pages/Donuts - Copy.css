@@ -67,6 +67,7 @@ html, body {
   }
 }
 
+/* Click for Coffee */
 .tooltip {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.7);
@@ -74,10 +75,6 @@ html, body {
   padding: 5px 10px;
   border-radius: 5px;
   pointer-events: none; /* Ensure the tooltip doesn't interfere with click events */
-  transform: translate(-25%, -75%); /* Position the tooltip near the cursor */
+  transform: translate(-50%, -100%); /* Position the tooltip above the cursor */
   white-space: nowrap; /* Prevent the text from wrapping */
-}
-
-body {
-  cursor: url('../assets/images/hands_open.png'), auto; /* Default cursor */
 }
