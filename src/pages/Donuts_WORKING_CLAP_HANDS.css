@@ -1,0 +1,89 @@
+/* Donuts.css */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: auto;
+  font-size: 16px;
+}
+
+.donuts-container {
+  top: -1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+  position: relative;
+}
+
+.header {
+  width: 100%;
+  padding: 1rem;
+  background-color: #fff;
+  cursor: default; /* Standard cursor for the header */
+  z-index: 1000; /* Ensure the header is on top */
+  position: relative; /* Ensure it affects the stacking context */
+}
+
+.coffee-pot {
+  position: absolute;
+  top: 6rem;
+  left: 1rem;
+  width: 150px;
+  height: auto;
+}
+
+.donut-image {
+  width: 250px;
+  height: 250px;
+  cursor: pointer;
+  margin-top: 5rem;
+}
+
+.coffee-cups-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-gap: 1rem;
+  margin-top: 2rem;
+  width: 80%;
+}
+
+.coffee-cup {
+  margin: 0.5rem;
+}
+
+.coffee-image {
+  width: 120px;
+  height: 120px;
+}
+
+.floating-cup {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  animation: float-in 2s ease-in-out forwards;
+}
+
+@keyframes float-in {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(calc(45rem - 250px), calc(35rem - 100px));
+    opacity: 1;
+  }
+}
+
+.tooltip {
+  position: fixed; /* Change to fixed to follow the cursor */
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  pointer-events: none;
+  transform: translate(-30%, +250%); /* Center the tooltip near the cursor */
+  white-space: nowrap;
+}
