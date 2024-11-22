@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/data_catalog/static/css/main.4b9d4667.css",
-    "main.js": "/data_catalog/static/js/main.d237b329.js",
+    "main.css": "/data_catalog/static/css/main.a0e25e68.css",
+    "main.js": "/data_catalog/static/js/main.6cda4218.js",
     "static/js/453.0cba6432.chunk.js": "/data_catalog/static/js/453.0cba6432.chunk.js",
     "static/media/sign_contract_homer.webp": "/data_catalog/static/media/sign_contract_homer.536e8c2d59cc4aada07a.webp",
     "static/media/Coffee_Pot.gif": "/data_catalog/static/media/Coffee_Pot.2e5355063021fcccab61.gif",
@@ -15,12 +15,12 @@
     "static/media/Verticle_Pipe.jpg": "/data_catalog/static/media/Verticle_Pipe.2339c40dbad3b1d5bed9.jpg",
     "static/media/Python_Logo.jfif": "/data_catalog/static/media/Python_Logo.1b38f1bbf2da4be0e94b.jfif",
     "index.html": "/data_catalog/index.html",
-    "main.4b9d4667.css.map": "/data_catalog/static/css/main.4b9d4667.css.map",
-    "main.d237b329.js.map": "/data_catalog/static/js/main.d237b329.js.map",
+    "main.a0e25e68.css.map": "/data_catalog/static/css/main.a0e25e68.css.map",
+    "main.6cda4218.js.map": "/data_catalog/static/js/main.6cda4218.js.map",
     "453.0cba6432.chunk.js.map": "/data_catalog/static/js/453.0cba6432.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4b9d4667.css",
-    "static/js/main.d237b329.js"
+    "static/css/main.a0e25e68.css",
+    "static/js/main.6cda4218.js"
   ]
 }
