@@ -3,45 +3,55 @@
 html, body {
   height: 100%;
   margin: 0;
-  overflow: auto; /* Ensure the body allows for scrolling */
-  font-size: 16px; /* Set a base font size for rem units */
+  overflow: auto;
+  font-size: 16px;
 }
 
 .donuts-container {
+  top: -1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  min-height: 100vh; /* Ensure the container takes at least the full viewport height */
+  min-height: 100vh;
   background-color: #f0f0f0;
   position: relative;
 }
 
+.header {
+  width: 100%;
+  padding: 1rem;
+  background-color: #fff;
+  cursor: default; /* Standard cursor for the header */
+  z-index: 1000; /* Ensure the header is on top */
+  position: relative; /* Ensure it affects the stacking context */
+}
+
 .coffee-pot {
   position: absolute;
-  top: 1rem; /* Use rem units for consistent spacing */
-  left: 1rem; /* Use rem units for consistent spacing */
-  width: 150px; /* Reduced size of the coffee pot */
+  top: 6rem;
+  left: 1rem;
+  width: 150px;
   height: auto;
 }
 
 .donut-image {
-  width: 250px; /* Reduced size of the donut image */
+  width: 250px;
   height: 250px;
   cursor: pointer;
-  margin-top: 5rem; /* Use rem units for consistent spacing */
+  margin-top: 5rem;
 }
 
 .coffee-cups-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  grid-gap: 1rem; /* Use rem units for consistent spacing */
-  margin-top: 2rem; /* Use rem units for consistent spacing */
-  width: 80%; /* Adjust as needed to fit the desired layout */
+  grid-gap: 1rem;
+  margin-top: 2rem;
+  width: 80%;
 }
 
 .coffee-cup {
-  margin: 0.5rem; /* Use rem units for consistent spacing */
+  margin: 0.5rem;
 }
 
 .coffee-image {
@@ -51,8 +61,8 @@ html, body {
 
 .floating-cup {
   position: absolute;
-  top: 1rem; /* Starting from coffee pot position */
-  left: 1rem; /* Starting from coffee pot position */
+  top: 1rem;
+  left: 1rem;
   animation: float-in 2s ease-in-out forwards;
 }
 
@@ -62,22 +72,18 @@ html, body {
     opacity: 0;
   }
   100% {
-    transform: translate(calc(45rem + 25px), calc(35rem - 200px)); /* Adjusted for consistent spacing */
+    transform: translate(calc(45rem - 250px), calc(35rem - 100px));
     opacity: 1;
   }
 }
 
 .tooltip {
-  position: absolute;
+  position: fixed; /* Change to fixed to follow the cursor */
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
   padding: 5px 10px;
   border-radius: 5px;
-  pointer-events: none; /* Ensure the tooltip doesn't interfere with click events */
-  transform: translate(-25%, -75%); /* Position the tooltip near the cursor */
-  white-space: nowrap; /* Prevent the text from wrapping */
-}
-
-body {
-  cursor: url('../assets/images/hands_open.png'), auto; /* Default cursor */
+  pointer-events: none;
+  transform: translate(-30%, +250%); /* Center the tooltip near the cursor */
+  white-space: nowrap;
 }

@@ -32,29 +32,39 @@ const Donuts = () => {
     }, 2000); // Match the duration of the CSS animation
 
     // Change cursor to clapping hands on click
-    document.body.style.cursor = `url(${handClap}), auto`;
+    document.body.style.cursor = `url(${handClap}) 16 16, auto`;
     setTimeout(() => {
-      document.body.style.cursor = `url(${handOpen}), auto`;
+      document.body.style.cursor = `url(${handOpen}) 16 16, auto`;
     }, 200); // Duration of the clapping animation
   };
 
   const handleMouseMove = (event) => {
-    setTooltipPosition({ x: event.clientX, y: event.clientY });
+    const { clientX: x, clientY: y } = event;
+    setTooltipPosition({ x, y });
+  };
+
+  const handleHeaderMouseEnter = () => {
+    document.body.style.cursor = 'default';
+  };
+
+  const handleHeaderClick = () => {
+    document.body.style.cursor = 'default';
+    // Add logic to navigate to another page if needed
   };
 
   useEffect(() => {
+    document.body.style.cursor = `url(${handOpen}) 16 16, auto`;
     document.addEventListener('mousemove', handleMouseMove);
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
+      document.body.style.cursor = 'default'; // Reset cursor when component unmounts
     };
   }, []);
 
-  useEffect(() => {
-    document.body.style.cursor = `url(${handOpen}), auto`;
-  }, []);
-
   return (
-    <div className="donuts-container" onClick={handleScreenClick}><img
+    <div className="donuts-container" onClick={handleScreenClick}><div className="header" onMouseEnter={handleHeaderMouseEnter} onClick={handleHeaderClick}>
+        {/* Header content goes here */}
+        <h1>Donuts and Coffee</h1></div><img
         src={coffeePot}
         alt="Coffee Pot"
         className="coffee-pot"

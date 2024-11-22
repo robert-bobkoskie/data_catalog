@@ -1,31 +1,36 @@
-/* src/components/Header.css */
-
 .header {
   background-color: #282c34;
   padding: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  width: 100%; /* Ensure the header takes up the full width of the page */
 }
 
 .logo {
-  height: 50px; /* Increased height */
-  cursor: pointer; /* Change cursor to pointer on hover */
-  transition: opacity 0.3s ease; /* Smooth transition for opacity */
+  height: 50px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  margin-right: 20px; /* Add margin to create space between the logo and the nav items */
 }
 
 .logo:hover {
-  opacity: 0.8; /* Slightly reduce opacity on hover */
+  opacity: 0.8;
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
 }
 
 .nav-left {
-  display: flex;
-  margin-left: 20px; /* Add margin to push items away from the logo */
+  margin-left: 20px;
 }
 
 .nav-right {
-  display: flex;
-  margin-left: auto; /* Push right nav items to the far right */
+  margin-left: auto;
 }
 
 nav ul {
@@ -37,13 +42,13 @@ nav ul {
 
 nav ul li {
   margin: 0 10px;
-  position: relative; /* Ensure the dropdown is positioned relative to the li */
+  position: relative;
 }
 
 nav ul li a {
   color: white;
   text-decoration: none;
-  font-size: 2.0em; /* Increased font size */
+  font-size: 2.0em;
 }
 
 nav ul li a:hover {
@@ -51,9 +56,9 @@ nav ul li a:hover {
 }
 
 nav ul li .ladder-display {
-  position: absolute; /* Position the dropdown absolutely within the li */
-  top: 100%; /* Position the dropdown below the Data element */
-  left: 0; /* Align the dropdown to the left edge of the Data element */
+  position: absolute;
+  top: 100%;
+  left: 0;
   background-color: white;
   color: black;
   border: 1px solid #ccc;
@@ -62,40 +67,40 @@ nav ul li .ladder-display {
   flex-direction: column;
   text-align: left;
   z-index: 1000;
-  min-width: 200px; /* Set a minimum width for the dropdown */
+  min-width: 200px;
 }
 
 nav ul li .ladder-display .dropdown-item {
-  padding: 5px 5px; /* Increase padding for better spacing */
+  padding: 5px 5px;
   color: black;
   text-decoration: none;
-  font-size: 1.2em; /* Increased font size */
-  white-space: nowrap; /* Ensure text does not wrap */
-  transition: all 0.3s ease; /* Smooth transition for hover effect */
+  font-size: 1.2em;
+  white-space: nowrap;
+  transition: all 0.3s ease;
 }
 
 nav ul li .ladder-display .dropdown-item:hover {
-  background-color: #f0f0f0; /* Change background color on hover */
-  color: #000; /* Ensure the text color is black on hover */
-  font-size: 1.4em; /* Increase font size on hover */
+  background-color: #f0f0f0;
+  color: #000;
+  font-size: 1.4em;
 }
 
 .donut {
-  height: 40px; /* Increased height */
-  cursor: pointer; /* Change cursor to pointer on hover */
-  margin-right: 10px; /* Space between the donut and About link */
-  transition: opacity 0.3s ease; /* Smooth transition for opacity */
+  height: 40px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: opacity 0.3s ease;
 }
 
 .donut:hover {
-  opacity: 0.8; /* Slightly reduce opacity on hover */
+  opacity: 0.8;
 }
 
 .epsilon {
   position: relative;
   top: -25px;
-  font-size: 3.5em; /* Increased font size */
-  color: white; /* Color of the character */
-  margin-right: 10px; /* Space between the character and donut */
-  cursor: pointer; /* Change cursor to pointer on hover */
+  font-size: 3.5em;
+  color: white;
+  margin-right: 10px;
+  cursor: pointer;
 }
