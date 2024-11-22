@@ -16,31 +16,40 @@ const Donuts = () => {
   const handleScreenClick = () => {
     const nextId = coffeeCups.length;
 
-    // Add new floating cup animation
     setFloatingCups((prevCups) => [
       ...prevCups,
       { id: nextId }
     ]);
 
-    // Remove floating cup after animation and then add to grid
     setTimeout(() => {
       setFloatingCups((prevCups) => prevCups.filter((cup) => cup.id !== nextId));
       setCoffeeCups((prevCups) => [
         ...prevCups,
         { id: nextId }
       ]);
-    }, 2000); // Match the duration of the CSS animation
+    }, 2000);
 
-    // Change cursor to clapping hands on click
     document.body.style.cursor = `url(${handClap}) 16 16, auto`;
     setTimeout(() => {
       document.body.style.cursor = `url(${handOpen}) 16 16, auto`;
-    }, 150); // Duration of the clapping animation
+    }, 150);
   };
 
   const handleMouseMove = (event) => {
     const { clientX: x, clientY: y } = event;
-    setTooltipPosition({ x, y });
+    const tooltipY = y + 20; // Tooltip appears 20px from the top
+
+    const isTooltipVisible = tooltipY > 30;
+    setTooltipPosition({ x, y: tooltipY });
+
+    const tooltipElement = document.querySelector('.tooltip');
+    if (tooltipElement) {
+      if (isTooltipVisible) {
+        tooltipElement.classList.remove('hidden');
+      } else {
+        tooltipElement.classList.add('hidden');
+      }
+    }
   };
 
   const handleHeaderMouseEnter = () => {
@@ -56,7 +65,7 @@ const Donuts = () => {
     document.addEventListener('mousemove', handleMouseMove);
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
-      document.body.style.cursor = 'default'; // Reset cursor when component unmounts
+      document.body.style.cursor = 'default';
     };
   }, []);
 
@@ -69,7 +78,7 @@ const Donuts = () => {
       {floatingCups.map(({ id }) => (
         <div key={id} className="floating-cup"><img src={coffeeImage} alt="Coffee" className="coffee-image" /></div>
       ))}
-      <div className="tooltip" style={{ top: `${tooltipPosition.y}px`, left: `${tooltipPosition.x}px` }}>
+      <div className={`tooltip ${tooltipPosition.y <= 30 ? 'hidden' : ''}`} style={{ top: `${tooltipPosition.y}px`, left: `${tooltipPosition.x}px` }}>
         Clap for coffee
       </div></div>
   );

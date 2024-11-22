@@ -84,6 +84,11 @@ html, body {
   padding: 5px 10px;
   border-radius: 5px;
   pointer-events: none;
-  transform: translate(-30%, +250%); /* Center the tooltip near the cursor */
+  transform: translate(-35%, -250%); /* Center the tooltip near the cursor */
   white-space: nowrap;
+  visibility: visible;
+}
+
+.tooltip.hidden {
+  visibility: hidden;
 }
