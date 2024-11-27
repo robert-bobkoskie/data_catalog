@@ -5,6 +5,7 @@ html, body {
   margin: 0;
   overflow: auto;
   font-size: 16px;
+  background-color: white; /* Change page background color to white */
 }
 
 .donuts-container {
@@ -14,14 +15,14 @@ html, body {
   align-items: center;
   width: 100%;
   min-height: 100vh;
-  background-color: #f0f0f0;
+  background-color: white; /* Change container background color to white */
   position: relative;
 }
 
 .header {
   width: 100%;
   padding: 1rem;
-  background-color: #fff;
+  background-color: white; /* Ensure header background color is white */
   cursor: default; /* Standard cursor for the header */
   z-index: 1000; /* Ensure the header is on top */
   position: relative; /* Ensure it affects the stacking context */
@@ -38,7 +39,6 @@ html, body {
 .donut-image {
   width: 250px;
   height: 250px;
-  cursor: pointer;
   margin-top: 5rem;
 }
 

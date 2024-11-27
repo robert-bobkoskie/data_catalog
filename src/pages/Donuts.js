@@ -52,14 +52,6 @@ const Donuts = () => {
     }
   };
 
-  const handleHeaderMouseEnter = () => {
-    document.body.style.cursor = `url(${handOpen}) 16 16, auto`;
-  };
-
-  const handleHeaderClick = () => {
-    document.body.style.cursor = 'default';
-  };
-
   useEffect(() => {
     document.body.style.cursor = `url(${handOpen}) 16 16, auto`;
     document.addEventListener('mousemove', handleMouseMove);
@@ -70,7 +62,7 @@ const Donuts = () => {
   }, []);
 
   return (
-    <div className="donuts-container" onClick={handleScreenClick}><div className="header" onMouseEnter={handleHeaderMouseEnter} onClick={handleHeaderClick}><h1>Donuts and Coffee</h1></div><img src={coffeePot} alt="Coffee Pot" className="coffee-pot" /><img src={donutImage} alt="Donut" className="donut-image" /><div className="coffee-cups-container">
+    <div className="donuts-container" onClick={handleScreenClick}><div className="header"><h1>Donuts and Coffee</h1></div><img src={coffeePot} alt="Coffee Pot" className="coffee-pot" /><img src={donutImage} alt="Donut" className="donut-image" /><div className="coffee-cups-container">
         {coffeeCups.map(({ id }) => (
           <div key={id} className="coffee-cup"><img src={coffeeImage} alt="Coffee" className="coffee-image" /></div>
         ))}

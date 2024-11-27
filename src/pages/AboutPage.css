@@ -45,6 +45,10 @@ body, html {
   opacity: 1; /* Show the text box */
 }
 
+.text-box.always-visible {
+  opacity: 1; /* Always visible */
+}
+
 .about-text {
   font-size: 32px;
   font-weight: bold;
