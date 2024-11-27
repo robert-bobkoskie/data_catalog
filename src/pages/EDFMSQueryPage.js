@@ -1,7 +1,7 @@
 /* EDFMSQueryPage*/
 
 import React from 'react';
-import coffeePot from '../assets/images/sign_contract_homer.webp';
+import coffeePot from '../assets/images/signature_05.gif';
 
 const EDFMSQueryPage = () => {
   return (
