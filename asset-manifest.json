@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/data_catalog/static/css/main.4e57b453.css",
-    "main.js": "/data_catalog/static/js/main.0f7c2147.js",
+    "main.js": "/data_catalog/static/js/main.eb4354c3.js",
     "static/js/453.0cba6432.chunk.js": "/data_catalog/static/js/453.0cba6432.chunk.js",
-    "static/media/sign_contract_homer.webp": "/data_catalog/static/media/sign_contract_homer.536e8c2d59cc4aada07a.webp",
     "static/media/Coffee_Pot.gif": "/data_catalog/static/media/Coffee_Pot.2e5355063021fcccab61.gif",
     "static/media/ATT_Business_2.png": "/data_catalog/static/media/ATT_Business_2.7e280c7c41e77ee121af.png",
     "static/media/Mongo_Logo.png": "/data_catalog/static/media/Mongo_Logo.41e505b098e3087319b8.png",
     "static/media/donuts.jpg": "/data_catalog/static/media/donuts.96e582194d4c81ae3303.jpg",
+    "static/media/signature_05.gif": "/data_catalog/static/media/signature_05.a951539ac466691ab7e7.gif",
     "static/media/React_Logo.png": "/data_catalog/static/media/React_Logo.21ab8e16d0a7abae2b5e.png",
     "static/media/donut.jpg": "/data_catalog/static/media/donut.0c197c8aa61a162e4e39.jpg",
     "static/media/Oracle_Logo.png": "/data_catalog/static/media/Oracle_Logo.da08e5ae56aca2f6b43f.png",
@@ -16,11 +16,11 @@
     "static/media/Python_Logo.jfif": "/data_catalog/static/media/Python_Logo.1b38f1bbf2da4be0e94b.jfif",
     "index.html": "/data_catalog/index.html",
     "main.4e57b453.css.map": "/data_catalog/static/css/main.4e57b453.css.map",
-    "main.0f7c2147.js.map": "/data_catalog/static/js/main.0f7c2147.js.map",
+    "main.eb4354c3.js.map": "/data_catalog/static/js/main.eb4354c3.js.map",
     "453.0cba6432.chunk.js.map": "/data_catalog/static/js/453.0cba6432.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4e57b453.css",
-    "static/js/main.0f7c2147.js"
+    "static/js/main.eb4354c3.js"
   ]
 }
