@@ -34,9 +34,7 @@ class DeltaDashboard extends Component {
       hintValue: null,
       selectedRange: null,
       isRangeSelected: false,
-      hintPosition: { top: 10, left: window.innerWidth - 250 }, // Initial hint position
     };
-    this.hintRef = React.createRef();
   }
 
   componentDidMount() {
@@ -125,35 +123,8 @@ class DeltaDashboard extends Component {
     return aggregatedCounts;
   }
 
-  handleMouseDown = (e) => {
-    const hintElement = this.hintRef.current;
-    const startX = e.clientX;
-    const startY = e.clientY;
-    const rect = hintElement.getBoundingClientRect();
-
-    const offsetX = startX - rect.left;
-    const offsetY = startY - rect.top;
-
-    const onMouseMove = (moveEvent) => {
-      const newLeft = moveEvent.clientX - offsetX;
-      const newTop = moveEvent.clientY - offsetY;
-
-      hintElement.style.left = `${newLeft}px`;
-      hintElement.style.top = `${newTop}px`;
-      hintElement.style.right = 'auto'; // Reset the right property to prevent conflict with left
-    };
-
-    const onMouseUp = () => {
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup', onMouseUp);
-    };
-
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
-  }
-
   render() {
-    const { chartData, hintValue, selectedRange, hintPosition } = this.state;
+    const { chartData, hintValue, selectedRange } = this.state;
     const filteredData = this.getFilteredData();
     const aggregatedCounts = this.getAggregatedCounts(filteredData);
 
@@ -201,7 +172,7 @@ class DeltaDashboard extends Component {
         {filteredData.length === 0 ? (
           <p>Loading data...</p>
         ) : (
-          <div className="content-wrapper"><div className="plot-container" onContextMenu={this.handleRightClick}><XYPlot xType="time" width={window.innerWidth - 40} height={400} style={{ backgroundColor: '#f0f0f0' }}><VerticalGridLines /><HorizontalGridLines /><XAxis title="Time" /><YAxis title="Counts" /><LineSeries
+		<div className="content-wrapper"><div className="plot-container" onContextMenu={this.handleRightClick}><XYPlot xType="time" width={window.innerWidth - 40} height={400} style={{ backgroundColor: '#f0f0f0' }}><VerticalGridLines /><HorizontalGridLines /><XAxis title="Time" /><YAxis title="Counts" /><LineSeries
                   data={chartData.map(d => ({ x: d.x, y: d.y.added }))}
                   curve="curveBasis"
                   color="blue"
@@ -218,12 +189,7 @@ class DeltaDashboard extends Component {
                   onNearestX={(value) => this.setState({ hintValue: value, isRangeSelected: false })}
                 />
                 {hintValue && !this.state.isRangeSelected && (
-                  <div
-                    className="hint-container"
-                    ref={this.hintRef}
-                    style={{ top: `${hintPosition.top}px`, left: `${hintPosition.left}px`, right: 'auto' }}
-                    onMouseDown={this.handleMouseDown}
-                  ><h4>Date: {this.formatDateTime(hintValue.x)}</h4><p><span className="legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.added || 0}</p><p><span className="legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.deleted || 0}</p><p><span className="legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.modified || 0}</p></div>
+                  <div className="hint-container"><h4>Date: {this.formatDateTime(hintValue.x)}</h4><p><span className="legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.added || 0}</p><p><span className="legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.deleted || 0}</p><p><span className="legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.modified || 0}</p></div>
                 )}
                 <Highlight
                   onBrushEnd={this.handleBrushEnd}

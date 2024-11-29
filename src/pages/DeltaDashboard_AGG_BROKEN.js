@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Papa from 'papaparse';
 import { XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LineSeries, Highlight } from 'react-vis';
+import Draggable from 'react-draggable';
 import 'react-vis/dist/style.css';
 import './DeltaDashboard.css';
 
@@ -8,11 +9,15 @@ class DataTable extends Component {
   render() {
     const { columns, data } = this.props;
     return (
-      <table className="data-table"><thead><tr>
+      <table className="data-table">
+        <thead>
+          <tr>
             {columns.map((column, i) => (
               <th key={i}>{column.Header}</th>
             ))}
-          </tr></thead><tbody>
+          </tr>
+        </thead>
+        <tbody>
           {data.map((row, i) => (
             <tr key={i}>
               {columns.map((column, j) => (
@@ -20,7 +25,8 @@ class DataTable extends Component {
               ))}
             </tr>
           ))}
-        </tbody></table>
+        </tbody>
+      </table>
     );
   }
 }
@@ -34,9 +40,8 @@ class DeltaDashboard extends Component {
       hintValue: null,
       selectedRange: null,
       isRangeSelected: false,
-      hintPosition: { top: 10, left: window.innerWidth - 250 }, // Initial hint position
+      staticTables: false,
     };
-    this.hintRef = React.createRef();
   }
 
   componentDidMount() {
@@ -78,30 +83,42 @@ class DeltaDashboard extends Component {
   handleBrushEnd = (area) => {
     if (area) {
       const { left, right } = area;
-      this.setState({ selectedRange: { start: left, end: right }, hintValue: null, isRangeSelected: true });
-    } else {
-      this.setState({ selectedRange: null, isRangeSelected: false });
+      this.setState({ selectedRange: { start: left, end: right }, isRangeSelected: true, staticTables: true });
     }
   }
 
-  handleRightClick = () => {
-    this.setState({ hintValue: null });
+  handleRightClick = (event) => {
+    event.preventDefault();
+    this.setState(prevState => ({
+      staticTables: !prevState.staticTables,
+      selectedRange: prevState.staticTables ? null : prevState.selectedRange,
+      isRangeSelected: prevState.staticTables ? false : prevState.isRangeSelected,
+      hintValue: prevState.staticTables ? null : prevState.hintValue
+    }));
+  }
+
+  handlePlotClick = () => {
+    if (this.state.staticTables) {
+      this.setState({ staticTables: false, selectedRange: null, isRangeSelected: false, hintValue: null });
+    }
   }
 
   getFilteredData = () => {
-    const { data, selectedRange, hintValue, isRangeSelected } = this.state;
+    const { data, selectedRange, hintValue, isRangeSelected, staticTables } = this.state;
 
-    if (selectedRange) {
-      const { start, end } = selectedRange;
-      return data.filter(row => {
-        const date = new Date(row.TIMESTAMP);
-        return date >= start && date <= end;
-      });
-    }
+    if (staticTables) {
+      if (selectedRange) {
+        const { start, end } = selectedRange;
+        return data.filter(row => {
+          const date = new Date(row.TIMESTAMP);
+          return date >= start && date <= end;
+        });
+      }
 
-    if (hintValue && !isRangeSelected) {
-      const dateStr = hintValue.x.toISOString();
-      return data.filter(row => new Date(row.TIMESTAMP).toISOString() === dateStr);
+      if (hintValue && !isRangeSelected) {
+        const dateStr = hintValue.x.toISOString();
+        return data.filter(row => new Date(row.TIMESTAMP).toISOString() === dateStr);
+      }
     }
 
     return data;
@@ -125,35 +142,8 @@ class DeltaDashboard extends Component {
     return aggregatedCounts;
   }
 
-  handleMouseDown = (e) => {
-    const hintElement = this.hintRef.current;
-    const startX = e.clientX;
-    const startY = e.clientY;
-    const rect = hintElement.getBoundingClientRect();
-
-    const offsetX = startX - rect.left;
-    const offsetY = startY - rect.top;
-
-    const onMouseMove = (moveEvent) => {
-      const newLeft = moveEvent.clientX - offsetX;
-      const newTop = moveEvent.clientY - offsetY;
-
-      hintElement.style.left = `${newLeft}px`;
-      hintElement.style.top = `${newTop}px`;
-      hintElement.style.right = 'auto'; // Reset the right property to prevent conflict with left
-    };
-
-    const onMouseUp = () => {
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup', onMouseUp);
-    };
-
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
-  }
-
   render() {
-    const { chartData, hintValue, selectedRange, hintPosition } = this.state;
+    const { chartData, hintValue, selectedRange, staticTables } = this.state;
     const filteredData = this.getFilteredData();
     const aggregatedCounts = this.getAggregatedCounts(filteredData);
 
@@ -197,62 +187,118 @@ class DeltaDashboard extends Component {
     const filteredDifferences = filteredData.filter(row => row.DIFFERENCES);
 
     return (
-      <div className="page-container"><h1>Delta Dashboard</h1>
+      <div className="page-container">
+        <h1>Delta Dashboard</h1>
         {filteredData.length === 0 ? (
           <p>Loading data...</p>
         ) : (
-          <div className="content-wrapper"><div className="plot-container" onContextMenu={this.handleRightClick}><XYPlot xType="time" width={window.innerWidth - 40} height={400} style={{ backgroundColor: '#f0f0f0' }}><VerticalGridLines /><HorizontalGridLines /><XAxis title="Time" /><YAxis title="Counts" /><LineSeries
+          <div className="content-wrapper">
+            <div className="plot-container" onContextMenu={this.handleRightClick} onClick={this.handlePlotClick}>
+              <XYPlot xType="time" width={window.innerWidth - 40} height={400} style={{ backgroundColor: '#f0f0f0' }}>
+                <VerticalGridLines />
+                <HorizontalGridLines />
+                <XAxis title="Time" />
+                <YAxis title="Counts" />
+                <LineSeries
                   data={chartData.map(d => ({ x: d.x, y: d.y.added }))}
                   curve="curveBasis"
                   color="blue"
-                  onNearestX={(value) => this.setState({ hintValue: value, isRangeSelected: false })}
-                /><LineSeries
+                  onNearestX={(value) => {
+                    if (!staticTables) {
+                      this.setState({ hintValue: value, isRangeSelected: false });
+                    }
+                  }}
+                />
+                <LineSeries
                   data={chartData.map(d => ({ x: d.x, y: d.y.deleted }))}
                   curve="curveBasis"
                   color="red"
-                  onNearestX={(value) => this.setState({ hintValue: value, isRangeSelected: false })}
-                /><LineSeries
+                  onNearestX={(value) => {
+                    if (!staticTables) {
+                      this.setState({ hintValue: value, isRangeSelected: false });
+                    }
+                  }}
+                />
+                <LineSeries
                   data={chartData.map(d => ({ x: d.x, y: d.y.modified }))}
                   curve="curveBasis"
                   color="green"
-                  onNearestX={(value) => this.setState({ hintValue: value, isRangeSelected: false })}
+                  onNearestX={(value) => {
+                    if (!staticTables) {
+                      this.setState({ hintValue: value, isRangeSelected: false });
+                    }
+                  }}
                 />
                 {hintValue && !this.state.isRangeSelected && (
-                  <div
-                    className="hint-container"
-                    ref={this.hintRef}
-                    style={{ top: `${hintPosition.top}px`, left: `${hintPosition.left}px`, right: 'auto' }}
-                    onMouseDown={this.handleMouseDown}
-                  ><h4>Date: {this.formatDateTime(hintValue.x)}</h4><p><span className="legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.added || 0}</p><p><span className="legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.deleted || 0}</p><p><span className="legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.modified || 0}</p></div>
+                  <Draggable>
+                    <div className="hint-container draggable">
+                      <h4>Date: {this.formatDateTime(hintValue.x)}</h4>
+                      <p><span className="legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.added || 0}</p>
+                      <p><span className="legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.deleted || 0}</p>
+                      <p><span className="legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.modified || 0}</p>
+                    </div>
+                  </Draggable>
+                )}
+                {selectedRange && (
+                  <Draggable>
+                    <div className="hint-container draggable">
+                      <h4>Range: {this.formatDateTime(selectedRange.start)} - {this.formatDateTime(selectedRange.end)}</h4>
+                      <p><span className="legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {aggregatedCounts.added}</p>
+                      <p><span className="legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {aggregatedCounts.deleted}</p>
+                      <p><span className="legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {aggregatedCounts.modified}</p>
+                    </div>
+                  </Draggable>
                 )}
                 <Highlight
                   onBrushEnd={this.handleBrushEnd}
-                  onDragEnd={this.handleBrushEnd}
-                /></XYPlot></div>
+                />
+              </XYPlot>
+            </div>
             {(selectedRange || hintValue) && (
               <div className="aggregated-info">
                 {selectedRange && (
-                  <><h2>Data from {this.formatDateTime(selectedRange.start)} to {this.formatDateTime(selectedRange.end)}</h2><div className="aggregated-counts"><p><span className="legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {aggregatedCounts.added}</p><p><span className="legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {aggregatedCounts.deleted}</p><p><span className="legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {aggregatedCounts.modified}</p></div></>
+                  <>
+                    <h2>Data from {this.formatDateTime(selectedRange.start)} to {this.formatDateTime(selectedRange.end)}</h2>
+                    <div className="aggregated-counts">
+                      <p><span className="legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {aggregatedCounts.added}</p>
+                      <p><span className="legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {aggregatedCounts.deleted}</p>
+                      <p><span className="legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {aggregatedCounts.modified}</p>
+                    </div>
+                  </>
                 )}
                 {hintValue && !selectedRange && (
-                  <><h2>Data for {this.formatDateTime(hintValue.x)}</h2><div className="aggregated-counts"><p><span className="legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.added || 0}</p><p><span className="legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.deleted || 0}</p><p><span className="legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.modified || 0}</p></div></>
+                  <>
+                    <h2>Data for {this.formatDateTime(hintValue.x)}</h2>
+                    <div className="aggregated-counts">
+                      <p><span className="legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.added || 0}</p>
+                      <p><span className="legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.deleted || 0}</p>
+                      <p><span className="legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.modified || 0}</p>
+                    </div>
+                  </>
                 )}
               </div>
             )}
-            <div className="table-container"><DataTable
+            <div className="table-container">
+              <DataTable
                 columns={columns}
                 data={filteredData}
-              /></div><div className="difference-section">
+              />
+            </div>
+            <div className="difference-section">
               {selectedRange && (
                 <h2>Differences from {this.formatDateTime(selectedRange.start)} to {this.formatDateTime(selectedRange.end)}</h2>
               )}
               {hintValue && !selectedRange && (
                 <h2>Differences for {this.formatDateTime(hintValue.x)}</h2>
               )}
-              <div className="table-container"><DataTable
+              <div className="table-container">
+                <DataTable
                   columns={differenceColumns}
                   data={filteredDifferences}
-                /></div></div></div>
+                />
+              </div>
+            </div>
+          </div>
         )}
       </div>
     );

@@ -34,7 +34,6 @@
 .plot-container {
   width: 100%;
   overflow: auto;
-  position: relative; /* Ensure the container is positioned relatively */
 }
 
 .difference-section {
@@ -64,12 +63,10 @@
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   font-weight: bold; /* Make the font bold */
-  position: absolute; /* Position the hint container absolutely */
-  top: 10px; /* Position it 10px from the top */
-  left: auto; /* Reset left to auto */
-  right: 10px; /* Position it 10px from the right */
-  z-index: 10; /* Ensure it is on top of other elements */
-  cursor: move; /* Change cursor to indicate draggable */
+  cursor: move; /* Change cursor to indicate draggable element */
+  position: absolute;
+  top: 10px; /* Default position to upper right */
+  right: 10px; /* Default position to upper right */
 }
 
 .legend-key {
