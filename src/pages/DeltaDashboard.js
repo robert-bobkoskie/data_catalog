@@ -1,4 +1,7 @@
+/* DeltaDashboard.js */
+
 import React, { Component } from 'react';
+import Draggable from 'react-draggable';
 import Papa from 'papaparse';
 import { XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LineSeries, Highlight } from 'react-vis';
 import 'react-vis/dist/style.css';
@@ -57,6 +60,9 @@ class DeltaDashboard extends Component {
         });
       })
       .catch(error => console.error('Error fetching the CSV file:', error));
+    
+    // Prevent the default context menu on right-click
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
   }
 
   processChartData = (data) => {
@@ -84,8 +90,42 @@ class DeltaDashboard extends Component {
     }
   }
 
-  handleRightClick = () => {
+  handleRightClick = (e) => {
+    e.preventDefault();
     this.setState({ hintValue: null });
+  }
+
+  handleMouseDown = (e) => {
+    // Check if the right mouse button is clicked
+    if (e.button === 2) {
+      e.preventDefault(); // Prevent the default context menu from appearing
+      return; // Exit the function early to prevent dragging
+    }
+
+    const hintElement = this.hintRef.current;
+    const startX = e.clientX;
+    const startY = e.clientY;
+    const rect = hintElement.getBoundingClientRect();
+
+    const offsetX = startX - rect.left;
+    const offsetY = startY - rect.top;
+
+    const onMouseMove = (moveEvent) => {
+      const newLeft = moveEvent.clientX - offsetX;
+      const newTop = moveEvent.clientY - offsetY;
+
+      hintElement.style.left = `${newLeft}px`;
+      hintElement.style.top = `${newTop}px`;
+      hintElement.style.right = 'auto'; // Reset the right property to prevent conflict with left
+    };
+
+    const onMouseUp = () => {
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    };
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
   }
 
   getFilteredData = () => {
@@ -123,33 +163,6 @@ class DeltaDashboard extends Component {
       return acc;
     }, { added: 0, deleted: 0, modified: 0 });
     return aggregatedCounts;
-  }
-
-  handleMouseDown = (e) => {
-    const hintElement = this.hintRef.current;
-    const startX = e.clientX;
-    const startY = e.clientY;
-    const rect = hintElement.getBoundingClientRect();
-
-    const offsetX = startX - rect.left;
-    const offsetY = startY - rect.top;
-
-    const onMouseMove = (moveEvent) => {
-      const newLeft = moveEvent.clientX - offsetX;
-      const newTop = moveEvent.clientY - offsetY;
-
-      hintElement.style.left = `${newLeft}px`;
-      hintElement.style.top = `${newTop}px`;
-      hintElement.style.right = 'auto'; // Reset the right property to prevent conflict with left
-    };
-
-    const onMouseUp = () => {
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup', onMouseUp);
-    };
-
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
   }
 
   render() {
@@ -201,7 +214,7 @@ class DeltaDashboard extends Component {
         {filteredData.length === 0 ? (
           <p>Loading data...</p>
         ) : (
-          <div className="content-wrapper"><div className="plot-container" onContextMenu={this.handleRightClick}><XYPlot xType="time" width={window.innerWidth - 40} height={400} style={{ backgroundColor: '#f0f0f0' }}><VerticalGridLines /><HorizontalGridLines /><XAxis title="Time" /><YAxis title="Counts" /><LineSeries
+          <div className="content-wrapper"><div className="plot-container" onContextMenu={this.handleRightClick}><XYPlot xType="time" width={window.innerWidth - 40} height={400} style={{ backgroundColor: '#e0e0e0' }}><VerticalGridLines /><HorizontalGridLines /><XAxis title="Time" /><YAxis title="Counts" /><LineSeries
                   data={chartData.map(d => ({ x: d.x, y: d.y.added }))}
                   curve="curveBasis"
                   color="blue"
@@ -218,26 +231,27 @@ class DeltaDashboard extends Component {
                   onNearestX={(value) => this.setState({ hintValue: value, isRangeSelected: false })}
                 />
                 {hintValue && !this.state.isRangeSelected && (
-                  <div
+				  <Draggable><div
                     className="hint-container"
                     ref={this.hintRef}
-                    style={{ top: `${hintPosition.top}px`, left: `${hintPosition.left}px`, right: 'auto' }}
-                    onMouseDown={this.handleMouseDown}
-                  ><h4>Date: {this.formatDateTime(hintValue.x)}</h4><p><span className="legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.added || 0}</p><p><span className="legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.deleted || 0}</p><p><span className="legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.modified || 0}</p></div>
+                    style={{ top: `${hintPosition.top}px`, left: `${hintPosition.left - 75}px`, right: 'auto' }}
+                    //onMouseDown={this.handleMouseDown}
+                  ><h4>Date: {this.formatDateTime(hintValue.x)}</h4><p><span className="legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.added || 0}</p><p><span className="legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.deleted || 0}</p><p><span className="legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.modified || 0}</p>
+				</div></Draggable>
                 )}
                 <Highlight
                   onBrushEnd={this.handleBrushEnd}
                   onDragEnd={this.handleBrushEnd}
                 /></XYPlot></div>
             {(selectedRange || hintValue) && (
-              <div className="aggregated-info">
+              <Draggable><div className="aggregated-info">
                 {selectedRange && (
                   <><h2>Data from {this.formatDateTime(selectedRange.start)} to {this.formatDateTime(selectedRange.end)}</h2><div className="aggregated-counts"><p><span className="legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {aggregatedCounts.added}</p><p><span className="legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {aggregatedCounts.deleted}</p><p><span className="legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {aggregatedCounts.modified}</p></div></>
                 )}
                 {hintValue && !selectedRange && (
                   <><h2>Data for {this.formatDateTime(hintValue.x)}</h2><div className="aggregated-counts"><p><span className="legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.added || 0}</p><p><span className="legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.deleted || 0}</p><p><span className="legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {chartData.find(d => d.x.getTime() === hintValue.x.getTime())?.y.modified || 0}</p></div></>
                 )}
-              </div>
+              </div></Draggable>
             )}
             <div className="table-container"><DataTable
                 columns={columns}

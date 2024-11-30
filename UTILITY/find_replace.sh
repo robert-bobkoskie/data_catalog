@@ -2,17 +2,19 @@
 
 # Define the search and replacement strings in arrays
 search_patterns=(
-  "style={{ backgroundColor: '#f0f0f0' }}"
-  "style={{ backgroundColor: 'blue' }}"
-  "style={{ backgroundColor: 'green' }}"
-  "style={{ backgroundColor: 'red' }}"
+  "style={ backgroundColor: '#f0f0f0' }"
+  "style={ backgroundColor: 'blue' }"
+  "style={ backgroundColor: 'green' }"
+  "style={ backgroundColor: 'red' }"
+  "style={ top: `${hintPosition.top}px`, left: `${hintPosition.left}px`, right: 'auto' }"
 )
 
 replacement_patterns=(
   "style={{ backgroundColor: '#e0e0e0' }}"
-  "style={{ backgroundColor: '#0000ff' }}"
-  "style={{ backgroundColor: '#008000' }}"
-  "style={{ backgroundColor: '#ff0000' }}"
+  "style={{ backgroundColor: 'blue' }}"
+  "style={{ backgroundColor: 'green' }}"
+  "style={{ backgroundColor: 'red' }}"
+  "style={{ top: `${hintPosition.top}px`, left: `${hintPosition.left}px`, right: 'auto' }}"
 )
 
 # Prompt the user for the filename
