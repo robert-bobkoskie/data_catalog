@@ -98,11 +98,42 @@ nav ul li .ladder-display .dropdown-item:hover {
   opacity: 0.8;
 }
 
-.epsilon {
+.greek {
   position: relative;
-  top: -25px;
-  font-size: 3.5em;
+  top: -16px;
+  font-size: 3.3em;
   color: black; /* Change text color to black */
   margin-right: 10px;
   cursor: pointer;
+}
+
+/* Moving Header specific styles from App.css */
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+  position: relative;
+}
+
+nav ul li .ladder-display {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  color: black;
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  z-index: 1000;
+}
+
+nav ul li .ladder-display div {
+  padding: 5px 0;
 }

@@ -1,0 +1,74 @@
+/* ConwaysGameLife.css */
+
+.container {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.input {
+    margin: 10px;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.stopButton {
+    width: 70px;
+    height: 70px;
+    background-color: red;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    line-height: 70px;
+    clip-path: polygon(50% 0%, 85% 15%, 100% 50%, 85% 85%, 50% 100%, 15% 85%, 0% 50%, 15% 15%);
+    display: none;
+    margin-left: 10px;
+}
+
+.buttonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.grid {
+    display: grid;
+    gap: 1px;
+    margin-top: 20px;
+    background-color: #ccc;
+}
+
+.cell {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+}
+
+.alive {
+    background-color: black;
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .cell {
+        background-color: Window;
+        border-color: WindowText;
+    }
+    
+    .alive {
+        background-color: WindowText;
+    }
+}

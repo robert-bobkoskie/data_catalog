@@ -21,20 +21,19 @@ function Header() {
 
   const handleCharacterClick = () => {
     // window.open("https://robert-bobkoskie.github.io/react_flowers/", "_blank");
-	navigate('/conway');
+	navigate('/ConwaysGameLife');
   };
 
   return (
     <header className="header">
-		<img src={logo} alt="Logo" className="logo" onClick={handleLogoClick} />
-		<nav className="nav-left">
-		  <ul><li><Link to="/dashboards">Dashboards</Link></li>
-		  <li
+		<img src={logo} alt="Logo" className="logo" onClick={handleLogoClick} /><nav className="nav-left">
+		<ul><li><Link to="/dashboards">Dashboards</Link></li>
+		<li
             ref={dataLinkRef}
             onMouseEnter={() => setShowLadder(true)}
             onMouseLeave={() => setShowLadder(false)}
-          >
-		  <Link to="#">Data</Link>
+        >
+		<Link to="#">Data</Link>
             {showLadder && (
               <div className="ladder-display">
 				<Link to="/data" className="dropdown-item">• EDF (Oracle)</Link>
@@ -44,13 +43,9 @@ function Header() {
           </li>
 		  <li><Link to="/sql">SQL</Link></li>
 		  </ul></nav><nav className="nav-right">
-		  <ul>
-		    <li><span className="greek" onClick={handleCharacterClick}>&#x03A3;</span></li>
-            <li><img src={donut} alt="Donut" className="donut" onClick={handleDonutClick} /></li>
-		    <li><Link to="/about">About</Link></li>
-		  </ul>
-		</nav>
-	</header>
+		  <ul><li><span className="greek" onClick={handleCharacterClick}>&#x03A3;</span></li>
+          <li><img src={donut} alt="Donut" className="donut" onClick={handleDonutClick} /></li>
+		  <li><Link to="/about">About</Link></li></ul></nav></header>
   );
 }
 
