@@ -11,15 +11,11 @@ class DataTable extends Component {
   render() {
     const { columns, data } = this.props;
     return (
-      <table className="data-table">
-        <thead>
-          <tr>
+      <table className="data-table"><thead><tr>
             {columns.map((column, i) => (
               <th key={i}>{column.Header}</th>
             ))}
-          </tr>
-        </thead>
-        <tbody>
+          </tr></thead><tbody>
           {data.map((row, i) => (
             <tr key={i}>
               {columns.map((column, j) => (
@@ -27,8 +23,7 @@ class DataTable extends Component {
               ))}
             </tr>
           ))}
-        </tbody>
-      </table>
+        </tbody></table>
     );
   }
 }
@@ -131,14 +126,7 @@ class DeltaDashboard extends Component {
   handleBrushEnd = (area) => {
     if (area) {
       const { left, right } = area;
-      this.setState({ 
-        selectedRange: { 
-          start: left, 
-          end: right 
-        }, 
-        hintValue: null, 
-        isRangeSelected: true 
-      });
+      this.setState({ selectedRange: { start: left, end: right }, hintValue: null, isRangeSelected: true });
     } else {
       this.setState({ selectedRange: null, isRangeSelected: false });
     }
@@ -227,119 +215,62 @@ class DeltaDashboard extends Component {
     const filteredDifferences = filteredData.filter(row => row.DIFFERENCES);
 
     return (
-      <div className="page-container">
-        <h1>Delta Dashboard</h1>
+      <div className="page-container"><h1>Delta Dashboard</h1>
         {filteredData.length === 0 ? (
           <p>Loading data...</p>
         ) : (
-          <div className="content-wrapper">
-            <div className="plot-container" onContextMenu={this.handleRightClick}>
-              <XYPlot xType="time" width={window.innerWidth - 40} height={400} style={{ backgroundColor: '#e0e0e0' }}>
-                <VerticalGridLines />
-                <HorizontalGridLines />
-                <XAxis title="Time" />
-                <YAxis title="Counts" />
-                <LineSeries
+          <div className="content-wrapper"><div className="plot-container" onContextMenu={this.handleRightClick}><XYPlot xType="time" width={window.innerWidth - 40} height={400} style={{ backgroundColor: '#e0e0e0' }}><VerticalGridLines /><HorizontalGridLines /><XAxis title="Time" /><YAxis title="Counts" /><LineSeries
                   data={chartData.map(d => ({ x: d.x, y: d.y.added }))}
                   curve="curveBasis"
                   color="blue"
                   onNearestX={(value) => this.setState({ hintValue: value, isRangeSelected: false })}
-                />
-                <LineSeries
+                /><LineSeries
                   data={chartData.map(d => ({ x: d.x, y: d.y.deleted }))}
                   curve="curveBasis"
                   color="red"
                   onNearestX={(value) => this.setState({ hintValue: value, isRangeSelected: false })}
-                />
-                <LineSeries
+                /><LineSeries
                   data={chartData.map(d => ({ x: d.x, y: d.y.modified }))}
                   curve="curveBasis"
                   color="green"
                   onNearestX={(value) => this.setState({ hintValue: value, isRangeSelected: false })}
                 />
                 {hintValue && !this.state.isRangeSelected && (
-                  <Draggable>
-                    <div
+                  <Draggable><div
                       className="hint-container"
                       ref={this.hintRef}
                       style={{ top: `${hintPosition.top}px`, left: `${hintPosition.left - 75}px`, right: 'auto' }}
                       onMouseDown={this.handleMouseDown}
-                    >
-                      <h4>Date: {this.formatDateTime(hintValue.x)}</h4>
-                      <p><span className="legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {this.getCountsForDateOrRange(hintValue).added}</p>
-                      <p><span className="legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {this.getCountsForDateOrRange(hintValue).deleted}</p>
-                      <p><span className="legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {this.getCountsForDateOrRange(hintValue).modified}</p>
-                    </div>
-                  </Draggable>
+                    ><h4>Date: {this.formatDateTime(hintValue.x)}</h4><p><span className="legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {this.getCountsForDateOrRange(hintValue).added}</p><p><span className="legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {this.getCountsForDateOrRange(hintValue).deleted}</p><p><span className="legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {this.getCountsForDateOrRange(hintValue).modified}</p></div></Draggable>
                 )}
                 <Highlight
-                  onBrushEnd={(area) => {
-                    if (area) {
-                      const { left, right } = area;
-                      this.setState({
-                        selectedRange: { start: left, end: right },
-                        hintValue: null,
-                        isRangeSelected: true
-                      });
-                    } else {
-                      this.setState({ selectedRange: null, isRangeSelected: false });
-                    }
-                  }}
+                  onBrushEnd={this.handleBrushEnd}
                   onDragEnd={this.handleBrushEnd}
-                  brushStyle={{ opacity: 0.3, fill: 'gray' }}
-                  // Enable the user-selected shaded region to remain
-                  drag={(area) => ({
-                  })}
-                />
-              </XYPlot>
-            </div>
+                /></XYPlot></div>
             {(selectedRange || hintValue) && (
-              <Draggable>
-                <div className="aggregated-info">
+              <Draggable><div className="aggregated-info">
                   {selectedRange && (
-                    <>
-                      <h2>Data from {this.formatDateTime(selectedRange.start)} to {this.formatDateTime(selectedRange.end)}</h2>
-                      <div className="aggregated-counts">
-                        <p><span className="legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {this.getCountsForDateOrRange(selectedRange).added}</p>
-                        <p><span className="legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {this.getCountsForDateOrRange(selectedRange).deleted}</p>
-                        <p><span className="legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {this.getCountsForDateOrRange(selectedRange).modified}</p>
-                      </div>
-                    </>
+                    <><h2>Data from {this.formatDateTime(selectedRange.start)} to {this.formatDateTime(selectedRange.end)}</h2><div className="aggregated-counts"><p><span className="legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {this.getCountsForDateOrRange(selectedRange).added}</p><p><span className="legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {this.getCountsForDateOrRange(selectedRange).deleted}</p><p><span className="legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {this.getCountsForDateOrRange(selectedRange).modified}</p></div></>
                   )}
                   {hintValue && !selectedRange && (
-                    <>
-                      <h2>Data for {this.formatDateTime(hintValue.x)}</h2>
-                      <div className="aggregated-counts">
-                        <p><span className="legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {this.getCountsForDateOrRange(hintValue).added}</p>
-                        <p><span className="legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {this.getCountsForDateOrRange(hintValue).deleted}</p>
-                        <p><span className="legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {this.getCountsForDateOrRange(hintValue).modified}</p>
-                      </div>
-                    </>
+                    <><h2>Data for {this.formatDateTime(hintValue.x)}</h2><div className="aggregated-counts"><p><span className="legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {this.getCountsForDateOrRange(hintValue).added}</p><p><span className="legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {this.getCountsForDateOrRange(hintValue).deleted}</p><p><span className="legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {this.getCountsForDateOrRange(hintValue).modified}</p></div></>
                   )}
-                </div>
-              </Draggable>
+                </div></Draggable>
             )}
-            <div className="table-container">
-              <DataTable
+            <div className="table-container"><DataTable
                 columns={columns}
                 data={filteredData}
-              />
-            </div>
-            <div className="difference-section">
+              /></div><div className="difference-section">
               {selectedRange && (
                 <h2>Differences from {this.formatDateTime(selectedRange.start)} to {this.formatDateTime(selectedRange.end)}</h2>
               )}
               {hintValue && !selectedRange && (
                 <h2>Differences for {this.formatDateTime(hintValue.x)}</h2>
               )}
-              <div className="table-container">
-                <DataTable
+              <div className="table-container"><DataTable
                   columns={differenceColumns}
                   data={filteredDifferences}
-                />
-              </div>
-            </div>
-          </div>
+                /></div></div></div>
         )}
       </div>
     );

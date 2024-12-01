@@ -131,14 +131,7 @@ class DeltaDashboard extends Component {
   handleBrushEnd = (area) => {
     if (area) {
       const { left, right } = area;
-      this.setState({ 
-        selectedRange: { 
-          start: left, 
-          end: right 
-        }, 
-        hintValue: null, 
-        isRangeSelected: true 
-      });
+      this.setState({ selectedRange: { start: left, end: right }, hintValue: null, isRangeSelected: true });
     } else {
       this.setState({ selectedRange: null, isRangeSelected: false });
     }
@@ -287,8 +280,12 @@ class DeltaDashboard extends Component {
                   }}
                   onDragEnd={this.handleBrushEnd}
                   brushStyle={{ opacity: 0.3, fill: 'gray' }}
-                  // Enable the user-selected shaded region to remain
-                  drag={(area) => ({
+                  // Override the brush area to always cover the full vertical height
+                  drag={area => ({
+                    bottom: 0,
+                    top: 400,
+                    left: area.left,
+                    right: area.right
                   })}
                 />
               </XYPlot>
