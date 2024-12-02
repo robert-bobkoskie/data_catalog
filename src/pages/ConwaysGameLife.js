@@ -64,7 +64,6 @@ const ConwaysGameLife = () => {
                 liveNeighbors += g[newRow][newCol] ? 1 : 0;
               }
             });
-
             if (cell && (liveNeighbors < 2 || liveNeighbors > 3)) {
               return false;
             }
@@ -102,11 +101,8 @@ const ConwaysGameLife = () => {
 
   return (
     <div className="container">
-      <header className="header">
-      </header>
       {error && <div className="errorMessage">{error}</div>}
-      <div className="buttonContainer">
-        <input
+      <div className="buttonContainer"><input
           type="number"
           value={rows}
           onChange={handleSizeChange}
@@ -114,21 +110,22 @@ const ConwaysGameLife = () => {
           max="199"
           className="input"
           placeholder="Enter a number (1-199)"
-        />
-        <button onClick={() => setRunning(true)} className="button">
+        /><button
+          onClick={() => setRunning(true)}
+          className={`button ${running ? 'depressed' : ''}`}
+        >
           Start
-        </button>
-        <button onClick={handleClearGrid} className="button">
-          Clear Grid
-        </button>
-        <div
-          className="stopButton"
+        </button><div
+          className={`stopButton ${!running ? 'depressed' : ''}`}
           onClick={() => setRunning(false)}
         >
           STOP
-        </div>
-      </div>
-      <div
+        </div><button
+          onClick={handleClearGrid}
+          className="button"
+        >
+          Clear Grid
+        </button></div><div
         className="grid"
         style={{ gridTemplateColumns: `repeat(${cols}, ${cellSize}px)` }}
         onMouseUp={handleMouseUp}
@@ -144,8 +141,7 @@ const ConwaysGameLife = () => {
             />
           ))
         )}
-      </div>
-    </div>
+      </div></div>
   );
 };
 

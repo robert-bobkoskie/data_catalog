@@ -12,7 +12,8 @@ function Header() {
   const navigate = useNavigate();
 
   const handleLogoClick = () => {
-    window.open("https://www.business.att.com/", "_blank");
+    // window.open("https://www.business.att.com/", "_blank");
+	navigate('/landing');
   };
 
   const handleDonutClick = () => {

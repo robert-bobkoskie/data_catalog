@@ -13,10 +13,6 @@
   box-sizing: border-box; /* Ensure padding is included in the total height and width */
 }
 
-.header {
-  margin-bottom: 5px;
-}
-
 .input {
   margin: 10px;
   padding: 5px;
@@ -29,6 +25,16 @@
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
+  box-shadow: 0 4px #999;
+  transition: box-shadow 0.2s;
+}
+.button:active {
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
+}
+.button.depressed {
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
 }
 
 .stopButton {
@@ -39,8 +45,26 @@
   font-size: 16px;
   text-align: center;
   line-height: 70px;
-  clip-path: polygon(50% 0%, 85% 15%, 100% 50%, 85% 85%, 50% 100%, 15% 85%, 0% 50%, 15% 15%);
+  clip-path: polygon(
+    30% 0%, 70% 0%, /* top edge */
+    100% 30%, /* top right corner */
+    100% 70%, /* right edge */
+    70% 100%, /* bottom right corner */
+    30% 100%, /* bottom edge */
+    0% 70%, /* bottom left corner */
+    0% 30% /* left edge */
+  );
   cursor: pointer;
+  box-shadow: 0 4px #999;
+  transition: box-shadow 0.2s;
+}
+.stopButton:active {
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
+}
+.stopButton.depressed {
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
 }
 
 .buttonContainer {
@@ -63,10 +87,12 @@
   background-color: white;
   border: 1px solid #ccc;
   cursor: pointer;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
-
 .alive {
-  background-color: black;
+  background-color: orange;
+  border: 3vh solid black;
+  box-sizing: border-box; /* Ensure the border is included in the total width and height */
 }
 
 .errorMessage {
