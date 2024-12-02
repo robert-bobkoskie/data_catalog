@@ -103,7 +103,6 @@ const ConwaysGameLife = () => {
   return (
     <div className="container">
       <header className="header">
-        <h1>Conway's Game of Life</h1>
       </header>
       {error && <div className="errorMessage">{error}</div>}
       <div className="buttonContainer">
