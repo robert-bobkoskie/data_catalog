@@ -5,9 +5,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* Align items to the top */
   height: 195vh;
   margin: 0;
+  padding-top: 80px; /* Add padding to ensure the grid doesn't overlap the button bar and header */
   padding-bottom: 800px; /* Add padding to ensure content doesn't touch the edges */
   background-color: #f0f0f0;
   box-sizing: border-box; /* Ensure padding is included in the total height and width */
@@ -72,11 +73,20 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
+  position: relative;
+  top: -50px;
+  left: 0;
+  width: 100%;
+  background-color: #f0f0f0; /* Background color to match the container */
+  padding: 10px 0; /* Padding for spacing */
+  z-index: 999; /* Ensure it stays on top */
 }
 
 .grid {
   display: grid;
   gap: 1px;
+  position: relative;
+  top: -60px;
   margin-top: 20px;
   background-color: #ccc;
   max-width: 80vw; /* Ensure the grid does not exceed 80% of the viewport width */
@@ -89,9 +99,9 @@
   cursor: pointer;
   box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
+
 .alive {
   background-color: orange;
-  border: 3vh solid black;
   box-sizing: border-box; /* Ensure the border is included in the total width and height */
 }
 

@@ -99,6 +99,8 @@ const ConwaysGameLife = () => {
     (window.innerHeight * 0.8) / rows // Dynamically calculate cell size based on viewport height
   );
 
+  const borderSize = Math.max(cellSize * 0.1, 1); // Calculate border size based on cell size
+
   return (
     <div className="container">
       {error && <div className="errorMessage">{error}</div>}
@@ -135,7 +137,7 @@ const ConwaysGameLife = () => {
             <div
               key={`${rowIndex}-${colIndex}`}
               className={`cell ${cell ? 'alive' : ''}`}
-              style={{ width: cellSize, height: cellSize }}
+              style={{ width: cellSize, height: cellSize, border: cell ? `${borderSize}px solid black` : '1px solid #ccc' }}
               onMouseDown={() => handleMouseDown(rowIndex, colIndex)}
               onMouseEnter={() => handleMouseEnter(rowIndex, colIndex)}
             />
