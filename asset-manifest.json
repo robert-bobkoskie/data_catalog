@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/data_catalog/static/css/main.bad8023e.css",
-    "main.js": "/data_catalog/static/js/main.d1ed0cfb.js",
+    "main.css": "/data_catalog/static/css/main.085d59c1.css",
+    "main.js": "/data_catalog/static/js/main.6d064cf5.js",
     "static/js/453.0cba6432.chunk.js": "/data_catalog/static/js/453.0cba6432.chunk.js",
     "static/media/Coffee_Pot.gif": "/data_catalog/static/media/Coffee_Pot.2e5355063021fcccab61.gif",
     "static/media/ATT_Business_2.png": "/data_catalog/static/media/ATT_Business_2.7e280c7c41e77ee121af.png",
@@ -15,12 +15,12 @@
     "static/media/Verticle_Pipe.jpg": "/data_catalog/static/media/Verticle_Pipe.2339c40dbad3b1d5bed9.jpg",
     "static/media/Python_Logo.jfif": "/data_catalog/static/media/Python_Logo.1b38f1bbf2da4be0e94b.jfif",
     "index.html": "/data_catalog/index.html",
-    "main.bad8023e.css.map": "/data_catalog/static/css/main.bad8023e.css.map",
-    "main.d1ed0cfb.js.map": "/data_catalog/static/js/main.d1ed0cfb.js.map",
+    "main.085d59c1.css.map": "/data_catalog/static/css/main.085d59c1.css.map",
+    "main.6d064cf5.js.map": "/data_catalog/static/js/main.6d064cf5.js.map",
     "453.0cba6432.chunk.js.map": "/data_catalog/static/js/453.0cba6432.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bad8023e.css",
-    "static/js/main.d1ed0cfb.js"
+    "static/css/main.085d59c1.css",
+    "static/js/main.6d064cf5.js"
   ]
 }
