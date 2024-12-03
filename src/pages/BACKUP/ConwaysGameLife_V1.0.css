@@ -1,0 +1,114 @@
+/* ConwaysGameLife.css */
+
+.container {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Align items to the top */
+  height: 195vh;
+  margin: 0;
+  padding-top: 80px; /* Add padding to ensure the grid doesn't overlap the button bar and header */
+  padding-bottom: 800px; /* Add padding to ensure content doesn't touch the edges */
+  background-color: #f0f0f0;
+  box-sizing: border-box; /* Ensure padding is included in the total height and width */
+}
+
+.input {
+  margin: 10px;
+  padding: 5px;
+  font-size: 16px;
+  width: 120px; /* Make the input box wider */
+}
+
+.button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px #999;
+  transition: box-shadow 0.2s;
+}
+.button:active {
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
+}
+.button.depressed {
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
+}
+
+.stopButton {
+  width: 70px;
+  height: 70px;
+  background-color: red;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  line-height: 70px;
+  clip-path: polygon(
+    30% 0%, 70% 0%, /* top edge */
+    100% 30%, /* top right corner */
+    100% 70%, /* right edge */
+    70% 100%, /* bottom right corner */
+    30% 100%, /* bottom edge */
+    0% 70%, /* bottom left corner */
+    0% 30% /* left edge */
+  );
+  cursor: pointer;
+  box-shadow: 0 4px #999;
+  transition: box-shadow 0.2s;
+}
+.stopButton:active {
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
+}
+.stopButton.depressed {
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
+}
+
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative;
+  top: -50px;
+  left: 0;
+  width: 100%;
+  background-color: #f0f0f0; /* Background color to match the container */
+  padding: 10px 0; /* Padding for spacing */
+  z-index: 999; /* Ensure it stays on top */
+}
+
+.grid {
+  display: grid;
+  gap: 1px;
+  position: relative;
+  top: -60px;
+  margin-top: 20px;
+  background-color: #ccc;
+  max-width: 80vw; /* Ensure the grid does not exceed 80% of the viewport width */
+  max-height: 80vh; /* Ensure the grid does not exceed 80% of the viewport height */
+}
+
+.cell {
+  background-color: white;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.alive {
+  background-color: orange;
+  box-sizing: border-box; /* Ensure the border is included in the total width and height */
+}
+
+.errorMessage {
+  color: red;
+  margin-bottom: 10px;
+  margin-top: -10px; /* Reduce the margin-top to bring it closer to the input field */
+  text-align: center; /* Center the error message */
+  width: 100%; /* Ensure the message takes full width */
+}
