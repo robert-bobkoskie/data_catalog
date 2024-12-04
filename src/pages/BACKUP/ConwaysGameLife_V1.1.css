@@ -17,21 +17,8 @@
 .input {
   margin: 10px;
   padding: 5px;
-  font-size: 20px;
+  font-size: 16px;
   width: 120px; /* Make the input box wider */
-}
-
-.pattern-select {
-  font-size: 20px; /* Default font size for the dropdown */
-}
-
-/* Specific styles for the selected option */
-.pattern-select:focus {
-  font-size: 22px; /* Larger font size when the dropdown is focused */
-}
-
-.pattern-select.large-epsilon {
-  font-size: 24px; /* Larger font size when "pattern-e" is selected */
 }
 
 .button {
@@ -111,10 +98,6 @@
   border: 1px solid #ccc;
   cursor: pointer;
   box-sizing: border-box; /* Include padding and border in the element's total width and height */
-  transition: background-color 0.3s ease; /* Smooth transition for the hover effect */
-}
-.cell:hover {
-  background-color: #e0e0e0; /* Light gray color on hover */
 }
 
 .alive {
