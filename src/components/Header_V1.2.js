@@ -30,9 +30,7 @@ function Header() {
 	  navigate('/conway');
     } else if (character === 'σ') {
       navigate('/snake');
-    } else if (character === 'Δ') {
-      navigate('/archer');
-}
+    }
   };
 
   return (
@@ -59,7 +57,6 @@ function Header() {
       </nav>
       <nav className="nav-right">
         <ul>
-		  <li><span className="greek" onClick={() => handleCharacterClick('Δ')}>&#x0394;</span></li>
           <li><span className="greek" onClick={() => handleCharacterClick('Σ')}>&#x03A3;</span></li>
           <li><span className="greek" onClick={() => handleCharacterClick('Γ')}>&#x0393;</span></li>
           <li><img src={donut} alt="Donut" className="donut" onClick={handleDonutClick} /></li>
