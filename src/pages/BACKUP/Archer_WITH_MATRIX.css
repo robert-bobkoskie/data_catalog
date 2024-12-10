@@ -21,13 +21,10 @@ body {
   background-color: #f0f0f0; /* Light background color for visibility */
 }
 
-.triangle {
+.black {
   position: absolute;
-  width: 0;
-  height: 0;
-  border-top: 25px solid transparent; /* Increased height */
-  border-bottom: 25px solid transparent; /* Increased height */
-  border-left: 40px solid black; /* Decreased width */
+  background-color: black;
+  border: 1px solid #000; /* Add border for sub-matrix */
 }
 
 .green, .red {
@@ -59,11 +56,11 @@ body {
 .arrow-button {
   width: 60px;
   height: 60px;
-  font-size: 76px;
+  font-size: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 40px;
+  margin: 10px;
   background-color: #ccc;
   border: none;
   cursor: pointer;
@@ -72,11 +69,11 @@ body {
 .fire-button {
   width: 60px;
   height: 60px;
-  font-size: 106px;
+  font-size: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: -20px;
+  margin: 10px;
   background-color: #ccc;
   border-radius: 50%;
   border: none;
