@@ -25,9 +25,9 @@ body {
   position: absolute;
   width: 0;
   height: 0;
-  border-top: 20px solid transparent; /* Half of the height */
-  border-bottom: 20px solid transparent; /* Half of the height */
-  border-left: 50px solid black; /* Width of the triangle */
+  border-top: 25px solid transparent; /* Increased height */
+  border-bottom: 25px solid transparent; /* Increased height */
+  border-left: 40px solid black; /* Decreased width */
 }
 
 .green, .red {

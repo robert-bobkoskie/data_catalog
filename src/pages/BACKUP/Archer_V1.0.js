@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './Archer.css';
-import coffeePot from '../assets/sounds/bomb-03.wav';
 
 const matrixSize = 100;
 const projectileSize = 2;
@@ -13,18 +12,16 @@ const Archer = () => {
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [redSpeed, setRedSpeed] = useState(1000);
-  const [redFrequency, setRedFrequency] = useState(6000);
+  const [redFrequency, setRedFrequency] = useState(7000);
   const [gameStarted, setGameStarted] = useState(false);
   const [moveDirection, setMoveDirection] = useState(null);
-  const [glows, setGlows] = useState([]); // State to manage glows
-  const [isMuted, setIsMuted] = useState(false); // State to manage mute status
 
   const moveBlack = useCallback((direction) => {
     setBlackY((prevY) => {
       if (direction === 'up') {
-        return Math.max(-3, prevY - 4); // Allow moving 20px above the top
+        return Math.max(0, prevY - 1);
       } else if (direction === 'down') {
-        return Math.min(matrixSize - 7, prevY + 4); // Allow moving 20px below the bottom
+        return Math.min(matrixSize - 10, prevY + 1);
       }
       return prevY;
     });
@@ -40,7 +37,7 @@ const Archer = () => {
   const moveProjectiles = useCallback(() => {
     setProjectiles((prevProjectiles) =>
       prevProjectiles
-        .map((p) => ({ ...p, x: p.x + 2 })) // Move projectiles faster
+        .map((p) => ({ ...p, x: p.x + 1 }))
         .filter((p) => p.x < matrixSize)
     );
   }, []);
@@ -78,22 +75,10 @@ const Archer = () => {
           hit = true;
           collidedRedIndices.add(index);
           setScore((prevScore) => prevScore + 1);
-
-          // Play collision sound if not muted
-          if (!isMuted) {
-            const collisionSound = new Audio(coffeePot);
-            collisionSound.play();
-          }
-
-          // Add glow effect
-          setGlows((prevGlows) => [
-            ...prevGlows,
-            { x: p.x, y: p.y, id: Date.now() },
-          ]);
         }
       });
       if (!hit) {
-        newProjectiles.push({ ...p, x: p.x + 2 }); // Move projectiles faster
+        newProjectiles.push({ ...p, x: p.x + 1 });
       }
     });
 
@@ -108,7 +93,7 @@ const Archer = () => {
 
     setProjectiles(newProjectiles);
     setRedSubMatrices(newRedSubMatrices);
-  }, [projectiles, redSubMatrices, isMuted]);
+  }, [projectiles, redSubMatrices]);
 
   const checkGameOver = useCallback(() => {
     redSubMatrices.forEach((r) => {
@@ -151,19 +136,13 @@ const Archer = () => {
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (
-        event.key === 'ArrowUp' ||
-        event.key === 'ArrowDown' ||
-        event.key === ' '
-      ) {
-        event.preventDefault(); // Prevent the default scrolling behavior
-        if (event.key === 'ArrowUp') {
-          setMoveDirection('up');
-        } else if (event.key === 'ArrowDown') {
-          setMoveDirection('down');
-        } else if (event.key === ' ') {
-          fireProjectile();
-        }
+      if (event.key === 'ArrowUp') {
+        setMoveDirection('up');
+      } else if (event.key === 'ArrowDown') {
+        setMoveDirection('down');
+      } else if (event.key === ' ') {
+        fireProjectile();
+        event.preventDefault(); // Prevent default action to avoid any unintended behavior
       }
     };
 
@@ -191,65 +170,50 @@ const Archer = () => {
     setBlackY(initialBlackY);
   };
 
-  const toggleMute = () => {
-    setIsMuted((prevMuted) => !prevMuted);
-  };
-
   return (
     <div className="game-container">
       <div className="controls">
-        <div className="top-controls">
-          <button className="start-button" onClick={startGame}>
-            Start
-          </button>
-          <div className="score">Score: {score}</div>
+        <div className="score">Score: {score}</div>
+        <button
+          className="arrow-button"
+          onMouseDown={() => setMoveDirection('up')}
+          onMouseUp={() => setMoveDirection(null)}
+        >
+          ▲
+        </button>
+        <button className="fire-button" onClick={fireProjectile}>
+          ●
+        </button>
+        <button
+          className="arrow-button"
+          onMouseDown={() => setMoveDirection('down')}
+          onMouseUp={() => setMoveDirection(null)}
+        >
+          ▼
+        </button>
+        <div>
+          <label>Red Speed: {redSpeed} ms</label>
+          <input
+            type="range"
+            min="100"
+            max="2000"
+            value={redSpeed}
+            onChange={(e) => setRedSpeed(parseInt(e.target.value))}
+          />
         </div>
-        <div className="core-controls">
-          <button className="fire-button" onClick={fireProjectile}>
-            <span className="text">●</span>
-          </button>
-          <div className="arrows">
-            <button
-              className="arrow-button"
-              onMouseDown={() => setMoveDirection('up')}
-              onMouseUp={() => setMoveDirection(null)}
-            >
-              ▲
-            </button>
-            <button
-              className="arrow-button"
-              onMouseDown={() => setMoveDirection('down')}
-              onMouseUp={() => setMoveDirection(null)}
-            >
-              ▼
-            </button>
-          </div>
+        <div>
+          <label>Red Frequency: {redFrequency} ms</label>
+          <input
+            type="range"
+            min="2000"
+            max="7000"
+            value={redFrequency}
+            onChange={(e) => setRedFrequency(parseInt(e.target.value))}
+          />
         </div>
-        <div className="sliders">
-          <div>
-            <label>Red Speed: {redSpeed} ms</label>
-            <input
-              type="range"
-              min="100"
-              max="2000"
-              value={redSpeed}
-              onChange={(e) => setRedSpeed(parseInt(e.target.value))}
-            />
-          </div>
-          <div>
-            <label>Red Frequency: {redFrequency} ms</label>
-            <input
-              type="range"
-              min="500"
-              max="6000"
-              value={6000 - (redFrequency - 500)}
-              onChange={(e) => setRedFrequency(6000 - parseInt(e.target.value) + 500)}
-            />
-          </div>
-          <button className="mute-button" onClick={toggleMute}>
-            {isMuted ? 'Unmute' : 'Mute'}
-          </button>
-        </div>
+        <button className="start-button" onClick={startGame}>
+          Start
+        </button>
       </div>
       <div className="matrix">
         <div className="triangle" style={{ top: blackY * 5, left: 0 }}></div>
@@ -272,18 +236,6 @@ const Archer = () => {
             style={{
               top: r.y * 5,
               left: r.x * 5,
-              width: projectileSize * 5,
-              height: projectileSize * 5,
-            }}
-          ></div>
-        ))}
-        {glows.map((glow) => (
-          <div
-            key={glow.id}
-            className="glow"
-            style={{
-              top: glow.y * 5,
-              left: glow.x * 5,
               width: projectileSize * 5,
               height: projectileSize * 5,
             }}

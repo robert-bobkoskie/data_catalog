@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './Archer.css';
-import coffeePot from '../assets/sounds/bomb-03.wav';
 
 const matrixSize = 100;
 const projectileSize = 2;
@@ -16,15 +15,15 @@ const Archer = () => {
   const [redFrequency, setRedFrequency] = useState(6000);
   const [gameStarted, setGameStarted] = useState(false);
   const [moveDirection, setMoveDirection] = useState(null);
-  const [glows, setGlows] = useState([]); // State to manage glows
-  const [isMuted, setIsMuted] = useState(false); // State to manage mute status
 
   const moveBlack = useCallback((direction) => {
     setBlackY((prevY) => {
       if (direction === 'up') {
+		// return Math.max(-4, prevY - 4); // Allow moving 30px above the top
         return Math.max(-3, prevY - 4); // Allow moving 20px above the top
       } else if (direction === 'down') {
-        return Math.min(matrixSize - 7, prevY + 4); // Allow moving 20px below the bottom
+        // return Math.min(matrixSize - 6, prevY + 4); // Allow moving 30px below the bottom
+		return Math.min(matrixSize - 7, prevY + 4); // Allow moving 20px below the bottom
       }
       return prevY;
     });
@@ -78,18 +77,6 @@ const Archer = () => {
           hit = true;
           collidedRedIndices.add(index);
           setScore((prevScore) => prevScore + 1);
-
-          // Play collision sound if not muted
-          if (!isMuted) {
-            const collisionSound = new Audio(coffeePot);
-            collisionSound.play();
-          }
-
-          // Add glow effect
-          setGlows((prevGlows) => [
-            ...prevGlows,
-            { x: p.x, y: p.y, id: Date.now() },
-          ]);
         }
       });
       if (!hit) {
@@ -108,7 +95,7 @@ const Archer = () => {
 
     setProjectiles(newProjectiles);
     setRedSubMatrices(newRedSubMatrices);
-  }, [projectiles, redSubMatrices, isMuted]);
+  }, [projectiles, redSubMatrices]);
 
   const checkGameOver = useCallback(() => {
     redSubMatrices.forEach((r) => {
@@ -191,10 +178,6 @@ const Archer = () => {
     setBlackY(initialBlackY);
   };
 
-  const toggleMute = () => {
-    setIsMuted((prevMuted) => !prevMuted);
-  };
-
   return (
     <div className="game-container">
       <div className="controls">
@@ -246,9 +229,6 @@ const Archer = () => {
               onChange={(e) => setRedFrequency(6000 - parseInt(e.target.value) + 500)}
             />
           </div>
-          <button className="mute-button" onClick={toggleMute}>
-            {isMuted ? 'Unmute' : 'Mute'}
-          </button>
         </div>
       </div>
       <div className="matrix">
@@ -272,18 +252,6 @@ const Archer = () => {
             style={{
               top: r.y * 5,
               left: r.x * 5,
-              width: projectileSize * 5,
-              height: projectileSize * 5,
-            }}
-          ></div>
-        ))}
-        {glows.map((glow) => (
-          <div
-            key={glow.id}
-            className="glow"
-            style={{
-              top: glow.y * 5,
-              left: glow.x * 5,
               width: projectileSize * 5,
               height: projectileSize * 5,
             }}

@@ -17,7 +17,6 @@ const Archer = () => {
   const [gameStarted, setGameStarted] = useState(false);
   const [moveDirection, setMoveDirection] = useState(null);
   const [glows, setGlows] = useState([]); // State to manage glows
-  const [isMuted, setIsMuted] = useState(false); // State to manage mute status
 
   const moveBlack = useCallback((direction) => {
     setBlackY((prevY) => {
@@ -79,11 +78,9 @@ const Archer = () => {
           collidedRedIndices.add(index);
           setScore((prevScore) => prevScore + 1);
 
-          // Play collision sound if not muted
-          if (!isMuted) {
-            const collisionSound = new Audio(coffeePot);
-            collisionSound.play();
-          }
+          // Play collision sound
+          const collisionSound = new Audio(coffeePot);
+          collisionSound.play();
 
           // Add glow effect
           setGlows((prevGlows) => [
@@ -108,7 +105,7 @@ const Archer = () => {
 
     setProjectiles(newProjectiles);
     setRedSubMatrices(newRedSubMatrices);
-  }, [projectiles, redSubMatrices, isMuted]);
+  }, [projectiles, redSubMatrices]);
 
   const checkGameOver = useCallback(() => {
     redSubMatrices.forEach((r) => {
@@ -191,10 +188,6 @@ const Archer = () => {
     setBlackY(initialBlackY);
   };
 
-  const toggleMute = () => {
-    setIsMuted((prevMuted) => !prevMuted);
-  };
-
   return (
     <div className="game-container">
       <div className="controls">
@@ -246,9 +239,6 @@ const Archer = () => {
               onChange={(e) => setRedFrequency(6000 - parseInt(e.target.value) + 500)}
             />
           </div>
-          <button className="mute-button" onClick={toggleMute}>
-            {isMuted ? 'Unmute' : 'Mute'}
-          </button>
         </div>
       </div>
       <div className="matrix">
