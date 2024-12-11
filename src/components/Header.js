@@ -20,19 +20,16 @@ function Header() {
   };
 
   const handleCharacterClick = (character) => {
-    if (character === 'Γ') {
+    if (character === '\u0393') {
       // window.location.href = 'https://www.google.com';
-	  navigate('/conway');
-    } else if (character === 'Σ') {
+      navigate('/conway');
+    } else if (character === '\u03A3') {
       navigate('/snake');
-    } else if (character === 'γ') {
-      // window.location.href = 'https://www.google.com';
-	  navigate('/conway');
-    } else if (character === 'σ') {
-      navigate('/snake');
-    } else if (character === 'Δ') {
+    } else if (character === '\u0394') {
       navigate('/archer');
-}
+    } else if (character === '\u0398') {
+      navigate('/tetris');
+    }
   };
 
   return (
@@ -59,9 +56,10 @@ function Header() {
       </nav>
       <nav className="nav-right">
         <ul>
-		  <li><span className="greek" onClick={() => handleCharacterClick('Δ')}>&#x0394;</span></li>
-          <li><span className="greek" onClick={() => handleCharacterClick('Σ')}>&#x03A3;</span></li>
-          <li><span className="greek" onClick={() => handleCharacterClick('Γ')}>&#x0393;</span></li>
+		  <li><span className="greek" onClick={() => handleCharacterClick('\u0398')}>&#x0398;</span></li>
+		  <li><span className="greek" onClick={() => handleCharacterClick('\u0394')}>&#x0394;</span></li>
+          <li><span className="greek" onClick={() => handleCharacterClick('\u03A3')}>&#x03A3;</span></li>
+          <li><span className="greek" onClick={() => handleCharacterClick('\u0393')}>&#x0393;</span></li>
           <li><img src={donut} alt="Donut" className="donut" onClick={handleDonutClick} /></li>
           <li><Link to="/about">About</Link></li>
         </ul>

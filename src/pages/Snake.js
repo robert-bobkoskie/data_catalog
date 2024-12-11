@@ -57,7 +57,7 @@ const Snake = () => {
 
   const updateDirection = (newDirection) => {
     if (
-      (direction.x !== 0 && direction.x === -newDirection.x) || 
+      (direction.x !== 0 && direction.x === -newDirection.x) ||
       (direction.y !== 0 && direction.y === -newDirection.y)
     ) {
       return;
@@ -149,11 +149,6 @@ const Snake = () => {
         </div>
         <div className="start-game-over">
           <button onClick={startGame}>{gameStarted ? 'Restart' : 'Start'}</button>
-          {gameOver && (
-            <div className="game-over">
-              <div>Game Over</div>
-            </div>
-          )}
         </div>
         <div className="direction-controls">
           <button onClick={() => updateDirection({ x: 0, y: -1 })}>▲</button>
@@ -201,7 +196,7 @@ const Snake = () => {
             style={{
               left: `${segment.x * CELL_SIZE}px`,
               top: `${segment.y * CELL_SIZE}px`,
-              borderWidth: `${CELL_SIZE * 0.1}px`, // Dynamically sized border
+              borderWidth: `${CELL_SIZE * 0.1}px`,
             }}
           />
         ))}
@@ -210,9 +205,14 @@ const Snake = () => {
           style={{
             left: `${food.x * CELL_SIZE}px`,
             top: `${food.y * CELL_SIZE}px`,
-            borderWidth: `${CELL_SIZE * 0.1}px`, // Dynamically sized border
+            borderWidth: `${CELL_SIZE * 0.1}px`,
           }}
         />
+        {gameOver && (
+          <div className="game-over-overlay">
+            Game Over
+          </div>
+        )}
       </div>
     </div>
   );

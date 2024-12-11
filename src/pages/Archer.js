@@ -1,3 +1,5 @@
+/* Archer.js */
+
 import React, { useState, useEffect, useCallback } from 'react';
 import './Archer.css';
 import coffeePot from '../assets/sounds/bomb-03.wav';

@@ -1,0 +1,62 @@
+.tetris {
+  display: grid;
+  grid-template-areas:
+    ". title ."
+    ". game controls";
+  grid-template-columns: repeat(3, auto);
+}
+
+h1 {
+  text-align: center;
+  grid-area: title;
+}
+
+button {
+  padding: 4px;
+}
+
+.board {
+  user-select: none;
+  margin: auto;
+  grid-area: game;
+  border: 2px solid black;
+}
+
+.controls {
+  grid-area: controls;
+  margin-left: -500px; /* Move controls closer to the matrix */
+}
+
+.row {
+  display: flex;
+}
+
+.upcoming {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.cell {
+  width: 30px;
+  aspect-ratio: 1;
+  border: 1px solid black;
+  background-color: black;
+}
+
+.cell.hidden {
+  visibility: hidden;
+}
+
+.cell.Empty {
+  background-color: rgb(200, 200, 200);
+}
+
+.cell.I, .cell.J, .cell.L, .cell.O, .cell.S, .cell.T, .cell.Z {
+  background-color: black;
+}
+
+.controls h2 {
+  margin: 0; /* Remove margin around score */
+}

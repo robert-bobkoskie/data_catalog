@@ -1,0 +1,114 @@
+.tetris {
+  display: grid;
+  grid-template-areas:
+    ". title ."
+    ". game controls";
+  grid-template-columns: repeat(3, auto);
+}
+
+h1 {
+  text-align: center;
+  grid-area: title;
+}
+
+button {
+  padding: 4px;
+}
+
+.board {
+  user-select: none;
+  margin: auto;
+  grid-area: game;
+  border: 2px solid black;
+  display: grid;
+  grid-template-rows: repeat(20, 30px); /* Assuming a 20-row board */
+  grid-template-columns: repeat(10, 30px); /* Assuming a 10-column board */
+  gap: 0; /* No gaps between cells */
+}
+
+.controls {
+  grid-area: controls;
+  margin-left: -500px; /* Move controls closer to the matrix */
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  background-color: transparent; /* Default to transparent to avoid any background color issues */
+  border: none; /* Remove any border */
+  outline: none; /* Remove any outline */
+}
+
+.cell.Empty {
+  background-color: rgb(200, 200, 200);
+}
+
+.cell.I {
+  background-color: cyan;
+  border: 1px solid black; /* Add border only to shape cells */
+}
+
+.cell.J {
+  background-color: blue;
+  border: 1px solid black; /* Add border only to shape cells */
+}
+
+.cell.L {
+  background-color: orange;
+  border: 1px solid black; /* Add border only to shape cells */
+}
+
+.cell.O {
+  background-color: yellow;
+  border: 1px solid black; /* Add border only to shape cells */
+}
+
+.cell.S {
+  background-color: green;
+  border: 1px solid black; /* Add border only to shape cells */
+}
+
+.cell.T {
+  background-color: purple;
+  border: 1px solid black; /* Add border only to shape cells */
+}
+
+.cell.Z {
+  background-color: red;
+  border: 1px solid black; /* Add border only to shape cells */
+}
+
+.cell.hidden {
+  width: 30px;
+  height: 30px;
+  visibility: hidden;
+}
+
+.controls h2 {
+  margin: 0; /* Remove margin around score */
+}
+
+.upcoming {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.upcoming-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upcoming-row {
+  display: flex;
+}
+
+.cell.empty {
+  visibility: hidden;
+}
