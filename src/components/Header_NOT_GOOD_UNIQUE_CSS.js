@@ -21,7 +21,6 @@ function Header() {
 
   const handleCharacterClick = (character) => {
     if (character === '\u0393') {
-      // window.location.href = 'https://www.google.com';
       navigate('/conway');
     } else if (character === '\u03A3') {
       navigate('/snake');
@@ -33,9 +32,9 @@ function Header() {
   };
 
   return (
-    <header className="header">
-      <img src={logo} alt="Logo" className="logo" onClick={handleLogoClick} />
-      <nav className="nav-left">
+    <header className="header-header">
+      <img src={logo} alt="Logo" className="header-logo" onClick={handleLogoClick} />
+      <nav className="header-nav">
         <ul>
           <li><Link to="/dashboards">Dashboards</Link></li>
           <li
@@ -45,22 +44,18 @@ function Header() {
           >
             <Link to="#">Data</Link>
             {showLadder && (
-              <div className="ladder-display">
-                <Link to="/data" className="dropdown-item">• EDF (Oracle)</Link>
-                <Link to="/edf-ms-oracle" className="dropdown-item">• EDF MS (Mongo)</Link>
+              <div className="header-ladder-display">
+                <Link to="/data" className="header-dropdown-item">• EDF (Oracle)</Link>
+                <Link to="/edf-ms-oracle" className="header-dropdown-item">• EDF MS (Mongo)</Link>
               </div>
             )}
           </li>
           <li><Link to="/sql">SQL</Link></li>
-        </ul>
-      </nav>
-      <nav className="nav-right">
-        <ul>
-		  <li><span className="greek" onClick={() => handleCharacterClick('\u0398')}>&#x0398;</span></li>
-		  <li><span className="greek" onClick={() => handleCharacterClick('\u0394')}>&#x0394;</span></li>
-          <li><span className="greek" onClick={() => handleCharacterClick('\u03A3')}>&#x03A3;</span></li>
-          <li><span className="greek" onClick={() => handleCharacterClick('\u0393')}>&#x0393;</span></li>
-          <li><img src={donut} alt="Donut" className="donut" onClick={handleDonutClick} /></li>
+          <li><span className="header-greek" onClick={() => handleCharacterClick('\u0398')}>&#x0398;</span></li>
+          <li><span className="header-greek" onClick={() => handleCharacterClick('\u0394')}>&#x0394;</span></li>
+          <li><span className="header-greek" onClick={() => handleCharacterClick('\u03A3')}>&#x03A3;</span></li>
+          <li><span className="header-greek" onClick={() => handleCharacterClick('\u0393')}>&#x0393;</span></li>
+          <li><img src={donut} alt="Donut" className="header-donut" onClick={handleDonutClick} /></li>
           <li><Link to="/about">About</Link></li>
         </ul>
       </nav>

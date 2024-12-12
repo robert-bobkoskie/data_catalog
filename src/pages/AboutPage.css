@@ -32,6 +32,8 @@ body, html {
 
 .about-text-box {
   font-size: 26px;
+  background-color: blue;
+  color: yellow;
   border: 2px solid black;
   padding: 10px;
   margin-bottom: 10px;
@@ -110,6 +112,9 @@ body, html {
 
 /* New CSS for the HTTP Request box */
 .about-http-request-box {
+  z-index: 1;
+  background-color: blue;
+  color: yellow;
   position: absolute;
   top: 85px; /* Start below the PC logo */
   left: -15%;
@@ -131,6 +136,9 @@ body, html {
 
 /* New CSS for the Query box */
 .about-query-box {
+  z-index: 1;
+  background-color: blue;
+  color: yellow;
   position: absolute;
   top: 315px; /* Align with the top of the HTTP Request box */
   left: calc(100% - 100px); /* Adjust to the right of the HTTP Request box with a gap */

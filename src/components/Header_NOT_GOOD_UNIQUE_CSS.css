@@ -1,6 +1,6 @@
 /* src/components/Header.css */
 
-.header {
+.header-header {
   background-color: #282c34;
   padding: 10px;
   display: flex;
@@ -10,55 +10,47 @@
   width: 100%; /* Ensure the header takes up the full width of the page */
 }
 
-.logo {
+.header-logo {
   height: 50px;
   cursor: pointer;
   transition: opacity 0.3s ease;
   margin-right: 20px; /* Add margin to create space between the logo and the nav items */
 }
 
-.logo:hover {
+.header-logo:hover {
   opacity: 0.7;
 }
 
-.nav-left,
-.nav-right {
+.header-nav {
   display: flex;
   align-items: center;
+  flex-grow: 1;
 }
 
-.nav-left {
-  margin-left: 20px;
-}
-
-.nav-right {
-  margin-left: auto;
-}
-
-nav ul {
+.header-nav ul {
   list-style: none;
   display: flex;
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 
-nav ul li {
+.header-nav ul li {
   margin: 0 10px;
   position: relative;
 }
 
-nav ul li a {
-  /* color: black; */
+.header-nav ul li a {
   color: yellow;
   text-decoration: none;
   font-size: 1.6em; /* Header text font size */
 }
 
-nav ul li a:hover {
+.header-nav ul li a:hover {
   text-decoration: underline;
 }
 
-nav ul li .ladder-display {
+.header-nav ul li .header-ladder-display {
   position: absolute;
   top: 100%;
   left: 0;
@@ -73,7 +65,7 @@ nav ul li .ladder-display {
   min-width: 200px;
 }
 
-nav ul li .ladder-display .dropdown-item {
+.header-nav ul li .header-ladder-display .header-dropdown-item {
   padding: 5px 5px;
   color: black;
   text-decoration: none;
@@ -82,13 +74,13 @@ nav ul li .ladder-display .dropdown-item {
   transition: all 0.3s ease;
 }
 
-nav ul li .ladder-display .dropdown-item:hover {
+.header-nav ul li .header-ladder-display .header-dropdown-item:hover {
   background-color: #f0f0f0;
   color: #000;
   font-size: 1.4em;
 }
 
-.donut {
+.header-donut {
   height: 55px;
   top: 0;
   cursor: pointer;
@@ -96,36 +88,38 @@ nav ul li .ladder-display .dropdown-item:hover {
   transition: opacity 0.3s ease;
 }
 
-.donut:hover {
+.header-donut:hover {
   opacity: 0.7;
 }
 
-.greek {
-  position: relative;
-  top: 0;
+.header-greek {
   font-size: 3.3em;
-  /* color: black; */
   color: yellow;
   margin-right: 10px;
   cursor: pointer;
+  display: inline-flex; /* Ensure Greek characters are displayed inline */
+  align-items: center;
 }
 
-.greek:hover {
+.header-greek:hover {
   opacity: 0.5;
 }
 
-nav ul {
+.header-nav ul {
   list-style-type: none;
   padding: 0;
+  display: flex;
+  align-items: center;
 }
 
-nav ul li {
-  display: inline;
+.header-nav ul li {
+  display: flex;
+  align-items: center;
   margin-right: 20px;
   position: relative;
 }
 
-nav ul li .ladder-display {
+.header-nav ul li .header-ladder-display {
   position: absolute;
   top: 100%;
   left: 0;
@@ -139,6 +133,6 @@ nav ul li .ladder-display {
   z-index: 1000;
 }
 
-nav ul li .ladder-display div {
+.header-nav ul li .header-ladder-display div {
   padding: 5px 0;
 }
