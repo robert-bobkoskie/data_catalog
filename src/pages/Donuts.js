@@ -42,12 +42,12 @@ const Donuts = () => {
     const isTooltipVisible = tooltipY > 30;
     setTooltipPosition({ x, y: tooltipY });
 
-    const tooltipElement = document.querySelector('.tooltip');
+    const tooltipElement = document.querySelector('.donuts-tooltip');
     if (tooltipElement) {
       if (isTooltipVisible) {
-        tooltipElement.classList.remove('hidden');
+        tooltipElement.classList.remove('donuts-hidden');
       } else {
-        tooltipElement.classList.add('hidden');
+        tooltipElement.classList.add('donuts-hidden');
       }
     }
   };
@@ -62,17 +62,28 @@ const Donuts = () => {
   }, []);
 
   return (
-    <div className="donuts-container" onClick={handleScreenClick}><div className="header"><h1>Donuts and Coffee</h1></div><img src={coffeePot} alt="Coffee Pot" className="coffee-pot" /><img src={donutImage} alt="Donut" className="donut-image" /><div className="coffee-cups-container">
+    <div className="donuts-container" onClick={handleScreenClick}>
+      <div className="donuts-header">
+        <h1>Donuts and Coffee</h1>
+      </div>
+      <img src={coffeePot} alt="Coffee Pot" className="donuts-coffee-pot" />
+      <img src={donutImage} alt="Donut" className="donuts-donut-image" />
+      <div className="donuts-coffee-cups-container">
         {coffeeCups.map(({ id }) => (
-          <div key={id} className="coffee-cup"><img src={coffeeImage} alt="Coffee" className="coffee-image" /></div>
+          <div key={id} className="donuts-coffee-cup">
+            <img src={coffeeImage} alt="Coffee" className="donuts-coffee-image" />
+          </div>
         ))}
       </div>
       {floatingCups.map(({ id }) => (
-        <div key={id} className="floating-cup"><img src={coffeeImage} alt="Coffee" className="coffee-image" /></div>
+        <div key={id} className="donuts-floating-cup">
+          <img src={coffeeImage} alt="Coffee" className="donuts-coffee-image" />
+        </div>
       ))}
-      <div className={`tooltip ${tooltipPosition.y <= 30 ? 'hidden' : ''}`} style={{ top: `${tooltipPosition.y}px`, left: `${tooltipPosition.x}px` }}>
+      <div className={`donuts-tooltip ${tooltipPosition.y <= 30 ? 'donuts-hidden' : ''}`} style={{ top: `${tooltipPosition.y}px`, left: `${tooltipPosition.x}px` }}>
         Clap for coffee
-      </div></div>
+      </div>
+    </div>
   );
 };
 

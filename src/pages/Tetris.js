@@ -50,33 +50,37 @@ function Tetris() {
 
   return (
     <div className="tetris">
-      <h1>Tetris</h1>
-      <Board currentBoard={board} />
-      <div className="controls">
-        <h2>Score: {score}</h2>
-        <UpcomingBlocks upcomingBlocks={upcomingBlocks} />
-        <div className="arrow-buttons">
-          <button
-            className="arrow left"
-            onMouseDown={() => handleArrowPress('left')}
-            onMouseUp={() => handleArrowRelease('left')}
-            onMouseLeave={() => handleArrowRelease('left')}
-          ></button>
-          <button className="arrow up" onClick={() => handleArrowClick('rotate')}></button>
-          <button
-            className="arrow right"
-            onMouseDown={() => handleArrowPress('right')}
-            onMouseUp={() => handleArrowRelease('right')}
-            onMouseLeave={() => handleArrowRelease('right')}
-          ></button>
-          <button
-            className="arrow down"
-            onMouseDown={() => handleArrowPress('down')}
-            onMouseUp={() => handleArrowRelease('down')}
-            onMouseLeave={() => handleArrowRelease('down')}
-          ></button>
+      <div className="game-container">
+        <Board currentBoard={board} />
+        <div className="controls">
+          <h2>Score: {score}</h2>
+          {isPlaying ? (
+            <UpcomingBlocks upcomingBlocks={upcomingBlocks} />
+          ) : (
+            <button className="start-game-button" onClick={startGame}>Start Game</button>
+          )}
         </div>
-        {!isPlaying && <button onClick={startGame}>New Game</button>}
+      </div>
+      <div className="arrow-buttons">
+        <button
+          className="arrow left"
+          onMouseDown={() => handleArrowPress('left')}
+          onMouseUp={() => handleArrowRelease('left')}
+          onMouseLeave={() => handleArrowRelease('left')}
+        ></button>
+        <button className="arrow up" onClick={() => handleArrowClick('rotate')}></button>
+        <button
+          className="arrow right"
+          onMouseDown={() => handleArrowPress('right')}
+          onMouseUp={() => handleArrowRelease('right')}
+          onMouseLeave={() => handleArrowRelease('right')}
+        ></button>
+        <button
+          className="arrow down"
+          onMouseDown={() => handleArrowPress('down')}
+          onMouseUp={() => handleArrowRelease('down')}
+          onMouseLeave={() => handleArrowRelease('down')}
+        ></button>
       </div>
     </div>
   );

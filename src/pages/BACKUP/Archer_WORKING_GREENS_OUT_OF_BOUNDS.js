@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import './Archer.css';
-// import coffeePot from '../assets/sounds/bomb-03.wav';
-import coffeePot from '../assets/sounds/Explosion_Blast.wav';
+import coffeePot from '../assets/sounds/bomb-03.wav';
 
 const matrixSize = 100;
 const projectileSize = 2;
@@ -44,7 +43,7 @@ const Archer = () => {
     setProjectiles((prevProjectiles) =>
       prevProjectiles
         .map((p) => ({ ...p, x: p.x + 2 })) // Move projectiles faster
-        .filter((p) => p.x * 5 < 500) // Adjust the condition to account for scaling (500px is the width of the grid)
+        .filter((p) => p.x < matrixSize)
     );
   }, []);
 

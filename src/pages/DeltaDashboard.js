@@ -11,7 +11,7 @@ class DataTable extends Component {
   render() {
     const { columns, data } = this.props;
     return (
-      <table className="data-table">
+      <table className="delta-dashboard-data-table">
         <thead>
           <tr>
             {columns.map((column, i) => (
@@ -65,7 +65,7 @@ class DeltaDashboard extends Component {
         });
       })
       .catch(error => console.error('Error fetching the CSV file:', error));
-    
+
     // Prevent the default context menu on right-click
     document.addEventListener('contextmenu', (e) => e.preventDefault());
   }
@@ -227,13 +227,13 @@ class DeltaDashboard extends Component {
     const filteredDifferences = filteredData.filter(row => row.DIFFERENCES);
 
     return (
-      <div className="page-container">
+      <div className="delta-dashboard-page-container">
         <h1>Delta Dashboard</h1>
         {filteredData.length === 0 ? (
           <p>Loading data...</p>
         ) : (
-          <div className="content-wrapper">
-            <div className="plot-container" onContextMenu={this.handleRightClick}>
+          <div className="delta-dashboard-content-wrapper">
+            <div className="delta-dashboard-plot-container" onContextMenu={this.handleRightClick}>
               <XYPlot xType="time" width={window.innerWidth - 40} height={400} style={{ backgroundColor: '#e0e0e0' }}>
                 <VerticalGridLines />
                 <HorizontalGridLines />
@@ -260,15 +260,15 @@ class DeltaDashboard extends Component {
                 {hintValue && !this.state.isRangeSelected && (
                   <Draggable>
                     <div
-                      className="hint-container"
+                      className="delta-dashboard-hint-container"
                       ref={this.hintRef}
                       style={{ top: `${hintPosition.top}px`, left: `${hintPosition.left - 75}px`, right: 'auto' }}
                       onMouseDown={this.handleMouseDown}
                     >
                       <h4>Date: {this.formatDateTime(hintValue.x)}</h4>
-                      <p><span className="legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {this.getCountsForDateOrRange(hintValue).added}</p>
-                      <p><span className="legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {this.getCountsForDateOrRange(hintValue).deleted}</p>
-                      <p><span className="legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {this.getCountsForDateOrRange(hintValue).modified}</p>
+                      <p><span className="delta-dashboard-legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {this.getCountsForDateOrRange(hintValue).added}</p>
+                      <p><span className="delta-dashboard-legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {this.getCountsForDateOrRange(hintValue).deleted}</p>
+                      <p><span className="delta-dashboard-legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {this.getCountsForDateOrRange(hintValue).modified}</p>
                     </div>
                   </Draggable>
                 )}
@@ -295,44 +295,44 @@ class DeltaDashboard extends Component {
             </div>
             {(selectedRange || hintValue) && (
               <Draggable>
-                <div className="aggregated-info">
+                <div className="delta-dashboard-aggregated-info">
                   {selectedRange && (
                     <>
                       <h2>Data from {this.formatDateTime(selectedRange.start)} to {this.formatDateTime(selectedRange.end)}</h2>
-                      <div className="aggregated-counts">
-                        <p><span className="legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {this.getCountsForDateOrRange(selectedRange).added}</p>
-                        <p><span className="legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {this.getCountsForDateOrRange(selectedRange).deleted}</p>
-                        <p><span className="legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {this.getCountsForDateOrRange(selectedRange).modified}</p>
+                      <div className="delta-dashboard-aggregated-counts">
+                        <p><span className="delta-dashboard-legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {this.getCountsForDateOrRange(selectedRange).added}</p>
+                        <p><span className="delta-dashboard-legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {this.getCountsForDateOrRange(selectedRange).deleted}</p>
+                        <p><span className="delta-dashboard-legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {this.getCountsForDateOrRange(selectedRange).modified}</p>
                       </div>
                     </>
                   )}
                   {hintValue && !selectedRange && (
                     <>
                       <h2>Data for {this.formatDateTime(hintValue.x)}</h2>
-                      <div className="aggregated-counts">
-                        <p><span className="legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {this.getCountsForDateOrRange(hintValue).added}</p>
-                        <p><span className="legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {this.getCountsForDateOrRange(hintValue).deleted}</p>
-                        <p><span className="legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {this.getCountsForDateOrRange(hintValue).modified}</p>
+                      <div className="delta-dashboard-aggregated-counts">
+                        <p><span className="delta-dashboard-legend-key" style={{ backgroundColor: 'blue' }}></span> Added: {this.getCountsForDateOrRange(hintValue).added}</p>
+                        <p><span className="delta-dashboard-legend-key" style={{ backgroundColor: 'red' }}></span> Deleted: {this.getCountsForDateOrRange(hintValue).deleted}</p>
+                        <p><span className="delta-dashboard-legend-key" style={{ backgroundColor: 'green' }}></span> Modified: {this.getCountsForDateOrRange(hintValue).modified}</p>
                       </div>
                     </>
                   )}
                 </div>
               </Draggable>
             )}
-            <div className="table-container">
+            <div className="delta-dashboard-table-container">
               <DataTable
                 columns={columns}
                 data={filteredData}
               />
             </div>
-            <div className="difference-section">
+            <div className="delta-dashboard-difference-section">
               {selectedRange && (
                 <h2>Differences from {this.formatDateTime(selectedRange.start)} to {this.formatDateTime(selectedRange.end)}</h2>
               )}
               {hintValue && !selectedRange && (
                 <h2>Differences for {this.formatDateTime(hintValue.x)}</h2>
               )}
-              <div className="table-container">
+              <div className="delta-dashboard-table-container">
                 <DataTable
                   columns={differenceColumns}
                   data={filteredDifferences}

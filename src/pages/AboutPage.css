@@ -17,20 +17,20 @@ body, html {
   padding-bottom: 100px; /* Add padding at the bottom for extra space */
 }
 
-.main-div {
+.about-main-div {
   display: flex;
   flex-direction: row; /* Changed to row for horizontal alignment */
   margin-left: 100px; /* Add 20px margin on the left */
   margin-right: 20px; /* Space between main div and text boxes */
 }
 
-.side-text-boxes {
+.about-side-text-boxes {
   display: flex;
   flex-direction: column;
   margin-left: 200px; /* Move text boxes to the right by 200px */
 }
 
-.text-box {
+.about-text-box {
   font-size: 26px;
   border: 2px solid black;
   padding: 10px;
@@ -41,11 +41,11 @@ body, html {
   transition: opacity 1s ease-in-out; /* Smooth transition */
 }
 
-.text-box.visible {
+.about-text-box-visible {
   opacity: 1; /* Show the text box */
 }
 
-.text-box.always-visible {
+.about-text-box-always-visible {
   opacity: 1; /* Always visible */
 }
 
@@ -55,7 +55,7 @@ body, html {
   margin-bottom: 20px; /* Add margin below the "About" text */
 }
 
-.diagram {
+.about-diagram {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -63,25 +63,25 @@ body, html {
   position: relative; /* Necessary for positioning the http-request-box and query-box */
 }
 
-.pc-logo img,
-.box-content img {
+.about-pc-logo img,
+.about-box-content img {
   width: 100px; /* Adjust the size as needed */
   height: auto;
   margin: 10px;
 }
 
 /* Change cursor to pointer (finger) on hover */
-.pc-logo {
+.about-pc-logo {
   cursor: pointer;
 }
 
-.pipe img {
+.about-pipe img {
   width: 50px;
   height: 80px; /* Adjust the height as needed */
   margin: 10px 0;
 }
 
-.box {
+.about-box {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,14 +94,14 @@ body, html {
   height: 175px; /* Adjust height as needed */
 }
 
-.box-content {
+.about-box-content {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 /* Additional CSS for horizontal orientation */
-.box-content.horizontal {
+.about-box-content-horizontal {
   flex-direction: row;
   justify-content: space-between; /* Distribute items with space between them */
   width: 100%; /* Ensure the container takes the full width of the box */
@@ -109,7 +109,7 @@ body, html {
 }
 
 /* New CSS for the HTTP Request box */
-.http-request-box {
+.about-http-request-box {
   position: absolute;
   top: 85px; /* Start below the PC logo */
   left: -15%;
@@ -124,13 +124,13 @@ body, html {
   transition: transform 1s ease-in-out; /* Smooth transition */
 }
 
-.http-request-text {
+.about-http-request-text {
   font-size: 20px;
   font-weight: bold;
 }
 
 /* New CSS for the Query box */
-.query-box {
+.about-query-box {
   position: absolute;
   top: 315px; /* Align with the top of the HTTP Request box */
   left: calc(100% - 100px); /* Adjust to the right of the HTTP Request box with a gap */
@@ -145,13 +145,13 @@ body, html {
   transition: transform 1s ease-in-out; /* Smooth transition */
 }
 
-.query-text {
+.about-query-text {
   font-size: 20px;
   font-weight: bold;
 }
 
 /* New CSS for box labels */
-.box-label-left {
+.about-box-label-left {
   position: absolute;
   top: 10px; /* Adjust as needed */
   left: 10px; /* Adjust as needed */
@@ -159,7 +159,7 @@ body, html {
   font-weight: bold;
 }
 
-.box-label-right {
+.about-box-label-right {
   position: absolute;
   top: 10px; /* Adjust as needed */
   right: 10px; /* Adjust as needed */

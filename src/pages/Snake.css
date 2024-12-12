@@ -1,10 +1,15 @@
 /* Snake.css */
 
+body {
+  font-family: Arial, sans-serif;
+}
+
 .snake-game {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  margin-top: 100px; /* Add more space at the top */
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full viewport height */
 }
 
 .snake-controls {

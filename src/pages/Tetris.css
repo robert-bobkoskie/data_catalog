@@ -1,31 +1,37 @@
 /* Tetris.css */
 
+/* CSS Reset to remove default margins and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
 .tetris {
-  display: grid;
-  grid-template-areas:
-    ". title ."
-    ". game controls";
-  grid-template-columns: auto 1fr auto; /* Ensure the game and controls take equal space */
-  justify-items: center; /* Center the grid items */
-  position: relative; /* Add this line to make .tetris the positioning context */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden;
+  position: fixed;
+  left: 400px;
 }
 
-h1 {
-  text-align: center;
-  grid-area: title;
-}
-
-button {
-  font-size: 26px;
-  padding: 4px;
-  position: relative;
-  top: 20px;
+.game-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .board {
   user-select: none;
   margin: auto;
-  grid-area: game;
   border: 2px solid black;
   display: grid;
   grid-template-rows: repeat(20, 30px); /* Assuming a 20-row board */
@@ -34,13 +40,18 @@ button {
 }
 
 .controls {
-  grid-area: controls;
   display: flex;
   flex-direction: column;
   align-items: center;
-  left: -350px;
-  position: relative; /* Positioning context for arrow-buttons */
+  margin-left: 20px; /* Add margin to separate controls from the grid */
+  margin-top: 0; /* Adjust this value to move the controls up */
   min-width: 200px; /* Set a minimum width to ensure consistent layout */
+}
+
+.start-game-button {
+  font-size: 26px;
+  padding: 10px;
+  margin-top: 20px;
 }
 
 .arrow-buttons {
@@ -52,11 +63,9 @@ button {
   gap: 5px; /* Reduce gap between arrows */
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
-  position: absolute; /* Use absolute positioning */
-  bottom: 20px; /* Adjust as needed for spacing */
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Center horizontally */
+  position: relative; /* Keep arrow controls stationary */
+  top: -150px; /* Adjust this value to move the controls up */
+  left: 150px; /* Adjust this value to move the controls to the right */
 }
 
 .arrow {

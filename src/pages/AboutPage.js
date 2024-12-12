@@ -100,15 +100,57 @@ function AboutPage() {
   };
 
   return (
-    <div className="about-page"><div className="about-text">About</div><div className="main-div"><div className="diagram"><div className="pc-logo" onMouseEnter={handleMouseEnterRequest}><img src={pcLogo} alt="PC Logo" /></div><div className="http-request-box" ref={requestBoxRef}><div className="http-request-text">{httpResponse ? 'HTTP Response' : 'HTTP Request'}</div></div><div className="query-box" ref={queryBoxRef}><div className="query-text">{queryResponse ? 'Query Response' : 'Query'}</div></div><div className="pipe"><img src={verticalPipe} alt="Vertical Pipe" /></div><div className="box" ref={reactPythonBoxRef}><div className="box-label-left">Data Catalog</div><div className="box-content horizontal"><img src={reactLogo} alt="React Logo" /><img src={pythonLogo} alt="Python Logo" /></div></div><div className="pipe"><img src={verticalPipe} alt="Vertical Pipe" /></div><div className="box" ref={mongoOracleBoxRef}><div className="box-label-left">EDF (Oracle)</div><div className="box-label-right">EDF MS (Mongo)</div><div className="box-content horizontal"><img src={oracleLogo} alt="Oracle Logo" /><img src={mongoLogo} alt="Mongo Logo" /></div></div></div><div className="side-text-boxes"><div className="text-box always-visible">
+    <div className="about-page">
+      <div className="about-text">About</div>
+      <div className="about-main-div">
+        <div className="about-diagram">
+          <div className="about-pc-logo" onMouseEnter={handleMouseEnterRequest}>
+            <img src={pcLogo} alt="PC Logo" />
+          </div>
+          <div className="about-http-request-box" ref={requestBoxRef}>
+            <div className="about-http-request-text">{httpResponse ? 'HTTP Response' : 'HTTP Request'}</div>
+          </div>
+          <div className="about-query-box" ref={queryBoxRef}>
+            <div className="about-query-text">{queryResponse ? 'Query Response' : 'Query'}</div>
+          </div>
+          <div className="about-pipe">
+            <img src={verticalPipe} alt="Vertical Pipe" />
+          </div>
+          <div className="about-box" ref={reactPythonBoxRef}>
+            <div className="about-box-label-left">Data Catalog</div>
+            <div className="about-box-content about-box-content-horizontal">
+              <img src={reactLogo} alt="React Logo" />
+              <img src={pythonLogo} alt="Python Logo" />
+            </div>
+          </div>
+          <div className="about-pipe">
+            <img src={verticalPipe} alt="Vertical Pipe" />
+          </div>
+          <div className="about-box" ref={mongoOracleBoxRef}>
+            <div className="about-box-label-left">EDF (Oracle)</div>
+            <div className="about-box-label-right">EDF MS (Mongo)</div>
+            <div className="about-box-content about-box-content-horizontal">
+              <img src={oracleLogo} alt="Oracle Logo" />
+              <img src={mongoLogo} alt="Mongo Logo" />
+            </div>
+          </div>
+        </div>
+        <div className="about-side-text-boxes">
+          <div className="about-text-box about-text-box-always-visible">
             Initialize a demo flow by hovering over the PC icon, representing users on this app hosted with React.js.
-          </div><div className={`text-box ${visibleTextBox >= 2 ? 'visible' : 'hidden'}`}>
+          </div>
+          <div className={`about-text-box ${visibleTextBox >= 2 ? 'about-text-box-visible' : ''}`}>
             User input is translated into HTTP request methods using a REST API, which are sent to the backend process using Python Flask.
-          </div><div className={`text-box ${visibleTextBox >= 3 ? 'visible' : 'hidden'}`}>
+          </div>
+          <div className={`about-text-box ${visibleTextBox >= 3 ? 'about-text-box-visible' : ''}`}>
             Flask queries databases of record (Oracle SQL, NoSQL MongoDB). The backend processes aggregate and transform data into metadata.
-          </div><div className={`text-box ${visibleTextBox >= 4 ? 'visible' : 'hidden'}`}>
+          </div>
+          <div className={`about-text-box ${visibleTextBox >= 4 ? 'about-text-box-visible' : ''}`}>
             The Flask backend packages the data into an HTTP response, and the frontend renders the data into a visually approachable format, providing insights for the user.
-          </div></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

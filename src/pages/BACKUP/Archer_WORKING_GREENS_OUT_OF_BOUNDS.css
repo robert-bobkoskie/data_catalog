@@ -22,7 +22,6 @@ body {
   height: 500px; /* 100 cells * 5px */
   border: 1px solid #000;
   background-color: #f0f0f0; /* Light background color for visibility */
-  overflow: hidden; /* Ensure anything outside the grid is not visible */
 }
 
 .archer-triangle {
@@ -39,8 +38,6 @@ body {
   position: absolute;
   border-radius: 50%; /* Make the green and red objects circular */
   border: 1px solid #000; /* Add border for sub-matrix */
-  width: 10px; /* 2 cells * 5px */
-  height: 10px; /* 2 cells * 5px */
 }
 
 .archer-green {

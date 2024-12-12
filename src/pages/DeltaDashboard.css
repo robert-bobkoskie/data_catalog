@@ -1,23 +1,23 @@
 /* DeltaDashboard.css */
 
-.data-table {
+.delta-dashboard-data-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
 
-.data-table th,
-.data-table td {
+.delta-dashboard-data-table th,
+.delta-dashboard-data-table td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
 }
 
-.data-table th {
+.delta-dashboard-data-table th {
   background-color: #f2f2f2;
 }
 
-.table-container {
+.delta-dashboard-table-container {
   overflow-y: auto;
   overflow-x: auto;
   margin-top: 20px;
@@ -25,7 +25,7 @@
   padding-bottom: 20px;
 }
 
-.page-container {
+.delta-dashboard-page-container {
   padding-bottom: 50px;
   overflow: auto;
   height: 100vh; /* Ensure the container takes the full height of the viewport */
@@ -33,22 +33,22 @@
   flex-direction: column;
 }
 
-.plot-container {
+.delta-dashboard-plot-container {
   width: 100%;
   overflow: auto;
   position: relative; /* Ensure the container is positioned relatively */
 }
 
-.difference-section {
+.delta-dashboard-difference-section {
   margin-bottom: 50px; /* Add space under the differences table */
 }
 
-.content-wrapper {
+.delta-dashboard-content-wrapper {
   flex: 1; /* This ensures the wrapper takes available space */
   overflow: auto; /* Allow scrolling */
 }
 
-.aggregated-counts {
+.delta-dashboard-aggregated-counts {
   margin-top: 20px;
   padding-left: 20px; /* Add some left padding to indent */
   font-size: 1.2em; /* Increase font size slightly */
@@ -56,11 +56,11 @@
   color: #333; /* Change text color */
 }
 
-.aggregated-counts p {
+.delta-dashboard-aggregated-counts p {
   margin: 5px 0; /* Add some margin to each paragraph */
 }
 
-.hint-container {
+.delta-dashboard-hint-container {
   background: white;
   padding: 10px;
   border-radius: 5px;
@@ -74,13 +74,13 @@
   cursor: move; /* Change cursor to indicate draggable */
 }
 
-.legend-key {
+.delta-dashboard-legend-key {
   display: inline-block;
   width: 12px;
   height: 12px;
   margin-right: 5px;
 }
 
-.aggregated-info {
+.delta-dashboard-aggregated-info {
   margin: 20px 0;
 }
