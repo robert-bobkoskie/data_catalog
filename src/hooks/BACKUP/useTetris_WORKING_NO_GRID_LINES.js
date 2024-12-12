@@ -215,9 +215,6 @@ export function useTetris() {
     isPlaying,
     score,
     upcomingBlocks,
-    dispatchBoardState,
-    setTickSpeed,
-    TickSpeed,
   };
 }
 

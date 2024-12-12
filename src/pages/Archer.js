@@ -198,28 +198,28 @@ const Archer = () => {
   };
 
   return (
-    <div className="game-container">
-      <div className="controls">
-        <div className="top-controls">
-          <button className="start-button" onClick={startGame}>
+    <div className="archer-game-container">
+      <div className="archer-controls">
+        <div className="archer-top-controls">
+          <button className="archer-start-button" onClick={startGame}>
             Start
           </button>
-          <div className="score">Score: {score}</div>
+          <div className="archer-score">Score: {score}</div>
         </div>
-        <div className="core-controls">
-          <button className="fire-button" onClick={fireProjectile}>
-            <span className="text">●</span>
+        <div className="archer-core-controls">
+          <button className="archer-fire-button" onClick={fireProjectile}>
+            <span className="archer-text">●</span>
           </button>
-          <div className="arrows">
+          <div className="archer-arrows">
             <button
-              className="arrow-button"
+              className="archer-arrow-button"
               onMouseDown={() => setMoveDirection('up')}
               onMouseUp={() => setMoveDirection(null)}
             >
               ▲
             </button>
             <button
-              className="arrow-button"
+              className="archer-arrow-button"
               onMouseDown={() => setMoveDirection('down')}
               onMouseUp={() => setMoveDirection(null)}
             >
@@ -227,7 +227,7 @@ const Archer = () => {
             </button>
           </div>
         </div>
-        <div className="sliders">
+        <div className="archer-sliders">
           <div>
             <label>Red Speed: {redSpeed} ms</label>
             <input
@@ -245,20 +245,22 @@ const Archer = () => {
               min="500"
               max="6000"
               value={6000 - (redFrequency - 500)}
-              onChange={(e) => setRedFrequency(6000 - parseInt(e.target.value) + 500)}
+              onChange={(e) =>
+                setRedFrequency(6000 - parseInt(e.target.value) + 500)
+              }
             />
           </div>
-          <button className="mute-button" onClick={toggleMute}>
+          <button className="archer-mute-button" onClick={toggleMute}>
             {isMuted ? 'Unmute' : 'Mute'}
           </button>
         </div>
       </div>
-      <div className="matrix">
-        <div className="triangle" style={{ top: blackY * 5, left: 0 }}></div>
+      <div className="archer-matrix">
+        <div className="archer-triangle" style={{ top: blackY * 5, left: 0 }}></div>
         {projectiles.map((p, index) => (
           <div
             key={index}
-            className="green"
+            className="archer-green"
             style={{
               top: p.y * 5,
               left: p.x * 5,
@@ -270,7 +272,7 @@ const Archer = () => {
         {redSubMatrices.map((r, index) => (
           <div
             key={index}
-            className="red"
+            className="archer-red"
             style={{
               top: r.y * 5,
               left: r.x * 5,
@@ -282,7 +284,7 @@ const Archer = () => {
         {glows.map((glow) => (
           <div
             key={glow.id}
-            className="glow"
+            className="archer-glow"
             style={{
               top: glow.y * 5,
               left: glow.x * 5,
@@ -291,7 +293,7 @@ const Archer = () => {
             }}
           ></div>
         ))}
-        {gameOver && <div className="game-over">Game Over</div>}
+        {gameOver && <div className="archer-game-over">Game Over</div>}
       </div>
     </div>
   );

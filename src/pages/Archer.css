@@ -8,14 +8,14 @@ body {
   text-align: center;
 }
 
-.game-container {
+.archer-game-container {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
 }
 
-.matrix {
+.archer-matrix {
   display: inline-block;
   position: relative;
   width: 500px; /* 100 cells * 5px */
@@ -23,7 +23,7 @@ body {
   background-color: #f0f0f0; /* Light background color for visibility */
 }
 
-.triangle {
+.archer-triangle {
   position: absolute;
   width: 0;
   height: 0;
@@ -32,30 +32,30 @@ body {
   border-left: 40px solid black; /* Decreased width */
 }
 
-.green,
-.red {
+.archer-green,
+.archer-red {
   position: absolute;
   border-radius: 50%; /* Make the green and red objects circular */
   border: 1px solid #000; /* Add border for sub-matrix */
 }
 
-.green {
+.archer-green {
   background-color: green;
 }
 
-.red {
+.archer-red {
   background-color: red;
 }
 
-.glow {
+.archer-glow {
   position: absolute;
   border-radius: 50%;
   background-color: orange;
   opacity: 1;
-  animation: glowFade 2s forwards;
+  animation: archer-glowFade 2s forwards;
 }
 
-@keyframes glowFade {
+@keyframes archer-glowFade {
   0% {
     opacity: 1;
     box-shadow: 0 0 10px 10px orange;
@@ -66,20 +66,20 @@ body {
   }
 }
 
-.controls {
+.archer-controls {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-right: 20px;
 }
 
-.top-controls {
+.archer-top-controls {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
 }
 
-.score {
+.archer-score {
   font-size: 28px; /* Slightly larger */
   padding: 10px;
   border: 2px solid #000;
@@ -88,20 +88,20 @@ body {
   margin-left: 10px;
 }
 
-.core-controls {
+.archer-core-controls {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
 }
 
-.arrows {
+.archer-arrows {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.arrow-button {
+.archer-arrow-button {
   width: 50px;
   height: 50px;
   font-size: 24px;
@@ -114,7 +114,7 @@ body {
   cursor: pointer;
 }
 
-.fire-button {
+.archer-fire-button {
   width: 100px;
   height: 100px;
   display: flex;
@@ -129,7 +129,7 @@ body {
   overflow: hidden; /* Ensures the text does not overflow the button */
 }
 
-.fire-button .text {
+.archer-fire-button .archer-text {
   font-size: 48px; /* Large font size */
   line-height: 1;
   display: flex;
@@ -141,7 +141,7 @@ body {
   transform: translate(-50%, -50%);
 }
 
-.start-button {
+.archer-start-button {
   width: 120px;
   height: 60px;
   font-size: 24px;
@@ -151,7 +151,7 @@ body {
   cursor: pointer;
 }
 
-.mute-button {
+.archer-mute-button {
   width: 120px;
   height: 40px;
   font-size: 18px;
@@ -169,7 +169,7 @@ input[type="range"] {
   width: 100%;
 }
 
-.game-over {
+.archer-game-over {
   font-size: 36px;
   color: red;
   position: absolute;

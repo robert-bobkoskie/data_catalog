@@ -1,13 +1,9 @@
-/* Tetris.css */
-
 .tetris {
   display: grid;
   grid-template-areas:
     ". title ."
     ". game controls";
-  grid-template-columns: auto 1fr auto; /* Ensure the game and controls take equal space */
-  justify-items: center; /* Center the grid items */
-  position: relative; /* Add this line to make .tetris the positioning context */
+  grid-template-columns: repeat(3, auto);
 }
 
 h1 {
@@ -16,10 +12,7 @@ h1 {
 }
 
 button {
-  font-size: 26px;
   padding: 4px;
-  position: relative;
-  top: 20px;
 }
 
 .board {
@@ -35,59 +28,7 @@ button {
 
 .controls {
   grid-area: controls;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  left: -350px;
-  position: relative; /* Positioning context for arrow-buttons */
-  min-width: 200px; /* Set a minimum width to ensure consistent layout */
-}
-
-.arrow-buttons {
-  display: grid;
-  grid-template-areas:
-    ". up ."
-    "left . right"
-    ". down .";
-  gap: 5px; /* Reduce gap between arrows */
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-  position: absolute; /* Use absolute positioning */
-  bottom: 20px; /* Adjust as needed for spacing */
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Center horizontally */
-}
-
-.arrow {
-  width: 0;
-  height: 0;
-  border-style: solid;
-  cursor: pointer;
-}
-
-.arrow.up {
-  grid-area: up;
-  border-width: 0 25px 35px 25px;
-  border-color: transparent transparent black transparent;
-}
-
-.arrow.down {
-  grid-area: down;
-  border-width: 35px 25px 0 25px;
-  border-color: black transparent transparent transparent;
-}
-
-.arrow.left {
-  grid-area: left;
-  border-width: 25px 35px 25px 0;
-  border-color: transparent black transparent transparent;
-}
-
-.arrow.right {
-  grid-area: right;
-  border-width: 25px 0 25px 35px;
-  border-color: transparent transparent transparent black;
+  margin-left: -500px; /* Move controls closer to the matrix */
 }
 
 .row {

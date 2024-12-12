@@ -143,14 +143,14 @@ const Snake = () => {
 
   return (
     <div className="snake-game" ref={gameRef}>
-      <div className="controls">
-        <div className="score-box">
-          <div className="score">Score: {score}</div>
+      <div className="snake-controls">
+        <div className="snake-score-box">
+          <div className="snake-score">Score: {score}</div>
         </div>
-        <div className="start-game-over">
+        <div className="snake-start-game-over">
           <button onClick={startGame}>{gameStarted ? 'Restart' : 'Start'}</button>
         </div>
-        <div className="direction-controls">
+        <div className="snake-direction-controls">
           <button onClick={() => updateDirection({ x: 0, y: -1 })}>▲</button>
           <div>
             <button onClick={() => updateDirection({ x: -1, y: 0 })}>◄</button>
@@ -158,27 +158,27 @@ const Snake = () => {
           </div>
           <button onClick={() => updateDirection({ x: 0, y: 1 })}>▼</button>
         </div>
-        <div className="speed-container">
+        <div className="snake-speed-container">
           <input
             type="range"
             min="50"
             max="500"
             value={speed}
             onChange={(e) => setSpeed(Number(e.target.value))}
-            className="speed-slider"
+            className="snake-speed-slider"
           />
-          <div className="speed-labels">
+          <div className="snake-speed-labels">
             <span>Slower</span>
             <span>Faster</span>
           </div>
         </div>
       </div>
-      <div className="grid" style={{ width: WIDTH, height: HEIGHT }}>
+      <div className="snake-grid" style={{ width: WIDTH, height: HEIGHT }}>
         {Array.from({ length: GRID_SIZE }).map((_, x) =>
           Array.from({ length: GRID_SIZE }).map((_, y) => (
             <div
               key={`${x}-${y}`}
-              className={`grid-cell ${walls.some(wall => wall.x === x && wall.y === y) ? 'wall-cell' : ''} ${highlightCell && highlightCell.x === x && highlightCell.y === y ? 'highlight-cell' : ''}`}
+              className={`snake-grid-cell ${walls.some(wall => wall.x === x && wall.y === y) ? 'snake-wall-cell' : ''} ${highlightCell && highlightCell.x === x && highlightCell.y === y ? 'snake-highlight-cell' : ''}`}
               style={{
                 left: `${x * CELL_SIZE}px`,
                 top: `${y * CELL_SIZE}px`,
@@ -201,7 +201,7 @@ const Snake = () => {
           />
         ))}
         <div
-          className="food"
+          className="snake-food"
           style={{
             left: `${food.x * CELL_SIZE}px`,
             top: `${food.y * CELL_SIZE}px`,
@@ -209,7 +209,7 @@ const Snake = () => {
           }}
         />
         {gameOver && (
-          <div className="game-over-overlay">
+          <div className="snake-game-over-overlay">
             Game Over
           </div>
         )}

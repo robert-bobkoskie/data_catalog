@@ -7,7 +7,7 @@
   margin-top: 100px; /* Add more space at the top */
 }
 
-.controls {
+.snake-controls {
   display: flex;
   flex-direction: column;
   align-items: center; /* Center-align the elements */
@@ -15,7 +15,7 @@
   margin-left: 20px; /* Add left margin */
 }
 
-.score-box {
+.snake-score-box {
   border: 1px solid lightgray; /* Light border around score */
   padding: 10px;
   font-size: 24px; /* Increase font size of score */
@@ -27,7 +27,7 @@
   margin-bottom: 20px; /* Add space between elements */
 }
 
-.start-game-over {
+.snake-start-game-over {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,62 +36,62 @@
   margin-bottom: 20px; /* Add space between elements */
 }
 
-.start-game-over button {
+.snake-start-game-over button {
   width: 100%; /* Full width for the button */
   font-size: 20px; /* Increase font size */
   height: 50px; /* Increase height */
 }
 
-.direction-controls {
+.snake-direction-controls {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px; /* Add space between elements */
 }
 
-.direction-controls > div {
+.snake-direction-controls > div {
   display: flex;
   justify-content: center;
 }
 
-.direction-controls button {
+.snake-direction-controls button {
   font-size: 22px;
   padding: 5px 10px;
   margin: 2px;
   width: 75px; /* Set a fixed width to prevent shifting */
 }
 
-.speed-container {
+.snake-speed-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.speed-slider {
+.snake-speed-slider {
   margin-bottom: 10px;
   cursor: pointer;
 }
 
-.speed-labels {
+.snake-speed-labels {
   display: flex;
   justify-content: space-between;
   width: 100px;
   font-size: 12px;
 }
 
-.grid {
+.snake-grid {
   position: relative;
   background-color: #f0f0f0;
   border: 1px solid #000;
 }
 
-.grid-cell {
+.snake-grid-cell {
   position: absolute;
   width: 15px;
   height: 15px;
 }
 
-.wall-cell {
+.snake-wall-cell {
   background-color: black;
   border: 1px solid black;
   display: flex;
@@ -99,13 +99,13 @@
   align-items: center;
 }
 
-.wall-cell::after {
+.snake-wall-cell::after {
   content: 'X';
   color: yellow;
   font-size: 12px;
 }
 
-.highlight-cell {
+.snake-highlight-cell {
   background-color: #ddd; /* Light gray for highlight */
   border: 1px solid #333; /* Darker gray border for visibility */
 }
@@ -119,7 +119,7 @@
   border-color: black;
 }
 
-.food {
+.snake-food {
   position: absolute;
   width: 15px;
   height: 15px;
@@ -129,7 +129,7 @@
   border-radius: 50%;
 }
 
-.game-over-overlay {
+.snake-game-over-overlay {
   position: absolute;
   top: 50%;
   left: 50%;
