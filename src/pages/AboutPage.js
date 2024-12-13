@@ -101,8 +101,10 @@ function AboutPage() {
 
   return (
     <div className="about-page">
-      <div className="about-text">About</div>
-      <div className="about-main-div">
+	  <div className="about-header">
+	    <h1 className="h1-text">About</h1>
+      </div>
+	  <div className="about-main-div">
         <div className="about-diagram">
           <div className="about-pc-logo" onMouseEnter={handleMouseEnterRequest}>
             <img src={pcLogo} alt="PC Logo" />

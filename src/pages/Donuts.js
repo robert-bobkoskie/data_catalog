@@ -1,5 +1,3 @@
-/* Donuts.js */
-
 import React, { useState, useEffect } from 'react';
 import './Donuts.css';
 import donutImage from '../assets/images/donuts.jpg';
@@ -12,6 +10,7 @@ const Donuts = () => {
   const [coffeeCups, setCoffeeCups] = useState([]);
   const [floatingCups, setFloatingCups] = useState([]);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
   const handleScreenClick = () => {
     const nextId = coffeeCups.length;
@@ -28,60 +27,63 @@ const Donuts = () => {
         { id: nextId }
       ]);
     }, 2000);
-
-    document.body.style.cursor = `url(${handClap}) 16 16, auto`;
-    setTimeout(() => {
-      document.body.style.cursor = `url(${handOpen}) 16 16, auto`;
-    }, 150);
   };
 
   const handleMouseMove = (event) => {
     const { clientX: x, clientY: y } = event;
     const tooltipY = y + 20; // Tooltip appears 20px from the top
 
-    const isTooltipVisible = tooltipY > 30;
     setTooltipPosition({ x, y: tooltipY });
 
+    const donutsContent = document.querySelector('.donuts-content');
     const tooltipElement = document.querySelector('.donuts-tooltip');
-    if (tooltipElement) {
-      if (isTooltipVisible) {
-        tooltipElement.classList.remove('donuts-hidden');
+
+    if (donutsContent && tooltipElement) {
+      const rect = donutsContent.getBoundingClientRect();
+      const isWithinContent = x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+
+      if (isWithinContent) {
+        donutsContent.classList.add('has-hand-cursor');
+        tooltipElement.classList.add('donuts-visible');
+        setIsTooltipVisible(true);
       } else {
-        tooltipElement.classList.add('donuts-hidden');
+        donutsContent.classList.remove('has-hand-cursor');
+        tooltipElement.classList.remove('donuts-visible');
+        setIsTooltipVisible(false);
       }
     }
   };
 
   useEffect(() => {
-    document.body.style.cursor = `url(${handOpen}) 16 16, auto`;
     document.addEventListener('mousemove', handleMouseMove);
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
-      document.body.style.cursor = 'default';
     };
   }, []);
 
   return (
-    <div className="donuts-container" onClick={handleScreenClick}>
+    <div className="donuts-container">
       <div className="donuts-header">
-        <h1>Donuts and Coffee</h1>
+        <h1 className="h1-text">Donuts and Coffee</h1>
       </div>
-      <img src={coffeePot} alt="Coffee Pot" className="donuts-coffee-pot" />
-      <img src={donutImage} alt="Donut" className="donuts-donut-image" />
-      <div className="donuts-coffee-cups-container">
-        {coffeeCups.map(({ id }) => (
-          <div key={id} className="donuts-coffee-cup">
+      <div className="donuts-content" onClick={handleScreenClick}>
+        <img src={coffeePot} alt="Coffee Pot" className="donuts-coffee-pot" />
+        <img src={donutImage} alt="Donut" className="donuts-donut-image" />
+        <div className="donuts-coffee-cups-container">
+          {coffeeCups.map(({ id }) => (
+            <div key={id} className="donuts-coffee-cup">
+              <img src={coffeeImage} alt="Coffee" className="donuts-coffee-image" />
+            </div>
+          ))}
+        </div>
+        {floatingCups.map(({ id }) => (
+          <div key={id} className="donuts-floating-cup">
             <img src={coffeeImage} alt="Coffee" className="donuts-coffee-image" />
           </div>
         ))}
-      </div>
-      {floatingCups.map(({ id }) => (
-        <div key={id} className="donuts-floating-cup">
-          <img src={coffeeImage} alt="Coffee" className="donuts-coffee-image" />
+        <div className={`donuts-tooltip ${isTooltipVisible ? 'donuts-visible' : ''}`} style={{ top: `${tooltipPosition.y}px`, left: `${tooltipPosition.x}px` }}>
+          Clap for coffee
         </div>
-      ))}
-      <div className={`donuts-tooltip ${tooltipPosition.y <= 30 ? 'donuts-hidden' : ''}`} style={{ top: `${tooltipPosition.y}px`, left: `${tooltipPosition.x}px` }}>
-        Clap for coffee
       </div>
     </div>
   );

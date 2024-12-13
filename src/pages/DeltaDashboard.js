@@ -228,7 +228,9 @@ class DeltaDashboard extends Component {
 
     return (
       <div className="delta-dashboard-page-container">
-        <h1>Delta Dashboard</h1>
+		<div className="delta-dashboard-header">
+	      <h1 className="h1-text">Delta Dashboard</h1>
+        </div>
         {filteredData.length === 0 ? (
           <p>Loading data...</p>
         ) : (

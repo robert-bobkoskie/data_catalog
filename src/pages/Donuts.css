@@ -1,15 +1,13 @@
-/* Donuts.css */
-
 html, body {
   height: 100%;
   margin: 0;
   overflow: auto;
   font-size: 16px;
   background-color: white; /* Change page background color to white */
+  cursor: default; /* Standard cursor for the entire page */
 }
 
 .donuts-container {
-  top: -1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,6 +24,18 @@ html, body {
   cursor: default; /* Standard cursor for the header */
   z-index: 1000; /* Ensure the header is on top */
   position: relative; /* Ensure it affects the stacking context */
+}
+
+.donuts-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.donuts-content.has-hand-cursor {
+  cursor: url('../assets/images/hands_open.png') 16 16, auto; /* Hand cursor for the content */
 }
 
 .donuts-coffee-pot {
@@ -72,7 +82,7 @@ html, body {
     opacity: 0;
   }
   100% {
-    transform: translate(calc(55rem - 310px), calc(35rem - 130px));
+    transform: translate(calc(55rem - 310px), calc(35rem - 190px));
     opacity: 1;
   }
 }
@@ -86,9 +96,9 @@ html, body {
   pointer-events: none;
   transform: translate(-35%, -250%); /* Center the tooltip near the cursor */
   white-space: nowrap;
-  visibility: visible;
+  visibility: hidden; /* Initially hidden */
 }
 
-.donuts-tooltip.donuts-hidden {
-  visibility: hidden;
+.donuts-tooltip.donuts-visible {
+  visibility: visible; /* Visible when within the content div */
 }

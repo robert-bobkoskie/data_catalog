@@ -1,5 +1,14 @@
 /* DeltaDashboard.css */
 
+.delta-dashboard-header {
+  width: 100%;
+  padding: 1rem;
+  background-color: white; /* Ensure header background color is white */
+  cursor: default; /* Standard cursor for the header */
+  z-index: 1000; /* Ensure the header is on top */
+  position: relative; /* Ensure it affects the stacking context */
+}
+
 .delta-dashboard-data-table {
   width: 100%;
   border-collapse: collapse;
