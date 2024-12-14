@@ -5,7 +5,7 @@
   padding: 1rem;
   background-color: white; /* Ensure header background color is white */
   cursor: default; /* Standard cursor for the header */
-  z-index: 1000; /* Ensure the header is on top */
+  z-index: 100; /* Ensure the header is on top */
   position: relative; /* Ensure it affects the stacking context */
 }
 
