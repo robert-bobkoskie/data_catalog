@@ -49,20 +49,15 @@ export function useTetris() {
     }
 
     const newBoard = structuredClone(board);
-    addShapeToBoard(
-      newBoard,
-      droppingBlock,
-      droppingShape,
-      droppingRow,
-      droppingColumn
-    );
+    addShapeToBoard(newBoard, droppingBlock, droppingShape, droppingRow, droppingColumn);
 
-    // Count the number of cells added to the board
     const cellsAdded = droppingShape.flat().filter(cell => cell).length;
 
     const newUpcomingBlocks = structuredClone(upcomingBlocks);
-    const newBlock = newUpcomingBlocks.pop();
-    newUpcomingBlocks.unshift(getRandomBlock());
+    // const newBlock = newUpcomingBlocks.pop();    // Remove from the end
+    // newUpcomingBlocks.unshift(getRandomBlock()); // Add to the start
+	const newBlock = newUpcomingBlocks.shift();     // Remove from the start
+    newUpcomingBlocks.push(getRandomBlock());       // Add to the end
 
     if (hasCollisions(board, SHAPES[newBlock].shape, 0, 3)) {
       setIsPlaying(false);
@@ -71,26 +66,14 @@ export function useTetris() {
       setTickSpeed(TickSpeed.Normal);
     }
     setUpcomingBlocks(newUpcomingBlocks);
-    setScore((prevScore) => {
-      const points = cellsAdded;
-      console.log(`Cells added: ${cellsAdded}, Points: ${points}, New Score: ${prevScore + points}`);
-      return prevScore + points;
-    });
+    setScore((prevScore) => prevScore + cellsAdded);
     dispatchBoardState({
       type: 'commit',
       newBoard: [...getEmptyBoard(BOARD_HEIGHT - newBoard.length), ...newBoard],
       newBlock,
     });
     setIsCommitting(false);
-  }, [
-    board,
-    dispatchBoardState,
-    droppingBlock,
-    droppingColumn,
-    droppingRow,
-    droppingShape,
-    upcomingBlocks,
-  ]);
+  }, [board, dispatchBoardState, droppingBlock, droppingColumn, droppingRow, droppingShape, upcomingBlocks]);
 
   const gameTick = useCallback(() => {
     if (isCommitting) {
@@ -103,15 +86,7 @@ export function useTetris() {
     } else {
       dispatchBoardState({ type: 'drop' });
     }
-  }, [
-    board,
-    commitPosition,
-    dispatchBoardState,
-    droppingColumn,
-    droppingRow,
-    droppingShape,
-    isCommitting,
-  ]);
+  }, [board, commitPosition, dispatchBoardState, droppingColumn, droppingRow, droppingShape, isCommitting]);
 
   useInterval(() => {
     if (!isPlaying) {

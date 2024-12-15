@@ -73,25 +73,44 @@ const Donuts = () => {
     };
   }, [handleMouseMove]);
 
+  useEffect(() => {
+    const donutsContent = document.querySelector('.donuts-content');
+    if (donutsContent) {
+      donutsContent.style.cursor = `url(${isClapping ? handClap : handOpen}) 16 16, auto`;
+    }
+  }, [isClapping]);
+
   return (
-    <div className="donuts-container"><div className="donuts-header"><h1 className="h1-text">Donuts and Coffee</h1></div><div
+    <div className="donuts-container">
+      <div className="donuts-header">
+        <h1 className="h1-text">Donuts and Coffee</h1>
+      </div>
+      <div
         className="donuts-content"
         onClick={handleScreenClick}
-        style={{ cursor: `url(${isClapping ? handClap : handOpen}) 16 16, auto` }}
-      ><img src={coffeePot} alt="Coffee Pot" className="donuts-coffee-pot" /><img src={donutImage} alt="Donut" className="donuts-donut-image" /><div className="donuts-coffee-cups-container">
+      >
+        <img src={coffeePot} alt="Coffee Pot" className="donuts-coffee-pot" />
+        <img src={donutImage} alt="Donut" className="donuts-donut-image" />
+        <div className="donuts-coffee-cups-container">
           {coffeeCups.map(({ id }) => (
-            <div key={id} className="donuts-coffee-cup"><img src={coffeeImage} alt="Coffee" className="donuts-coffee-image" /></div>
+            <div key={id} className="donuts-coffee-cup">
+              <img src={coffeeImage} alt="Coffee" className="donuts-coffee-image" />
+            </div>
           ))}
         </div>
         {floatingCups.map(({ id }) => (
-          <div key={id} className="donuts-floating-cup"><img src={coffeeImage} alt="Coffee" className="donuts-coffee-image" /></div>
+          <div key={id} className="donuts-floating-cup">
+            <img src={coffeeImage} alt="Coffee" className="donuts-coffee-image" />
+          </div>
         ))}
         <div
           className={`donuts-tooltip ${isTooltipVisible ? 'donuts-visible' : ''}`}
           style={{ top: `${tooltipPosition.y}px`, left: `${tooltipPosition.x}px` }}
         >
           Clap for coffee
-        </div></div></div>
+        </div>
+      </div>
+    </div>
   );
 };
 
