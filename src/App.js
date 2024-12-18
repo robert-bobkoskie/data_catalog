@@ -12,7 +12,7 @@ import EDFMSQueryPage from './pages/EDFMSQueryPage';
 import Delta_Dashboard from './pages/DeltaDashboard';
 import Conway from './pages/ConwaysGameLife';
 import Snake from './pages/Snake';
-import Archer from './pages/Archer';
+import Dejarik from './pages/Dejarik';
 import Tetris from './pages/Tetris';
 import Donuts from './pages/Donuts';
 import LandingPage from './pages/LandingPage'; // Import the LandingPage component
@@ -27,7 +27,7 @@ function App() {
 	  <Route path="/dashboards" element={<Delta_Dashboard />} />
 	  <Route path="/conway" element={<Conway />} />
 	  <Route path="/snake" element={<Snake />} />
-	  <Route path="/archer" element={<Archer />} />
+	  <Route path="/dejarik" element={<Dejarik />} />
 	  <Route path="/tetris" element={<Tetris />} />
       <Route path="/donuts" element={<Donuts />} />
 	  <Route path="/landing" element={<LandingPage />} />                                 {/* Add the route for LandingPage */}

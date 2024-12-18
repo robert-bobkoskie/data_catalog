@@ -26,7 +26,7 @@ function Header() {
     } else if (character === '\u03A3') {
       navigate('/snake');
     } else if (character === '\u0394') {
-      navigate('/archer');
+      navigate('/dejarik');
     } else if (character === '\u0398') {
       navigate('/tetris');
     }

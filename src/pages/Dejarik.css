@@ -1,0 +1,201 @@
+/* Dejarik.css */
+
+body {
+ font-family: Arial, sans-serif;
+}
+
+.App {
+ text-align: center;
+}
+
+.dejarik-game-container {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin-top: 20px;
+}
+
+.dejarik-matrix {
+ display: inline-block;
+ position: relative;
+ width: 500px; /* 100 cells * 5px */
+ height: 500px; /* 100 cells * 5px */
+ border: 1px solid #000;
+ background-color: #f0f0f0; /* Light background color for visibility */
+ overflow: hidden; /* Ensure anything outside the grid is not visible */
+}
+
+.dejarik-triangle {
+ position: absolute;
+ width: 0;
+ height: 0;
+ border-top: 15px solid transparent; /* Adjusted height */
+ border-bottom: 15px solid transparent; /* Adjusted height */
+ border-left: 30px solid black; /* Adjusted width */
+}
+
+.dejarik-front-circle {
+ position: absolute;
+ top: 50%;
+ left: 100%;
+ width: 10px;
+ height: 10px;
+ background-color: green;
+ border-radius: 50%;
+ transform: translate(-50%, -50%);
+}
+
+.dejarik-green,
+.dejarik-red {
+ position: absolute;
+ border-radius: 50%; /* Make the green and red objects circular */
+ border: 1px solid #000; /* Add border for sub-matrix */
+ width: 10px; /* 2 cells * 5px */
+ height: 10px; /* 2 cells * 5px */
+}
+
+.dejarik-green {
+ background-color: green;
+}
+
+.dejarik-red {
+ background-color: red;
+}
+
+.dejarik-glow {
+ position: absolute;
+ border-radius: 50%;
+ background-color: orange;
+ opacity: 1;
+ animation: dejarik-glowFade 2s forwards;
+}
+
+@keyframes dejarik-glowFade {
+ 0% {
+  opacity: 1;
+  box-shadow: 0 0 10px 10px orange;
+ }
+ 100% {
+  opacity: 0;
+  box-shadow: ******* orange;
+ }
+}
+
+.dejarik-controls {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ margin-right: 20px;
+}
+
+.dejarik-top-controls {
+ display: flex;
+ align-items: center;
+ margin-bottom: 20px;
+}
+
+.dejarik-score {
+ font-size: 28px; /* Slightly larger */
+ padding: 10px;
+ border: 2px solid #000;
+ border-radius: 10px;
+ background-color: #fff;
+ margin-left: 10px;
+}
+
+.dejarik-core-controls {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin-bottom: 20px;
+}
+
+.dejarik-arrows {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+
+.dejarik-horizontal-arrows {
+ display: flex;
+ justify-content: center;
+ margin-top: 10px;
+}
+
+.dejarik-arrow-button {
+ width: 50px;
+ height: 50px;
+ font-size: 24px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin: 10px;
+ background-color: #ccc;
+ border: none;
+ cursor: pointer;
+}
+
+.dejarik-fire-button {
+ width: 100px;
+ height: 100px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin: 10px;
+ background-color: #ccc;
+ border-radius: 50%;
+ border: none;
+ cursor: pointer;
+ position: relative;
+ overflow: hidden; /* Ensures the text does not overflow the button */
+}
+
+.dejarik-fire-button .dejarik-text {
+ font-size: 48px; /* Large font size */
+ line-height: 1;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+}
+
+.dejarik-start-button {
+ width: 120px;
+ height: 60px;
+ top: 0;
+ font-size: 24px;
+ margin: 10px;
+ background-color: #ccc;
+ border: 1px solid #000;
+ cursor: pointer;
+}
+
+.dejarik-mute-button {
+ width: 120px;
+ height: 40px;
+ font-size: 18px;
+ margin-top: 20px;
+ background-color: #ccc;
+ border: 1px solid #000;
+ cursor: pointer;
+}
+
+label {
+ margin-top: 10px;
+}
+
+input[type="range"] {
+ width: 100%;
+}
+
+.dejarik-game-over {
+ font-size: 36px;
+ color: red;
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+}
