@@ -9,8 +9,8 @@ const projectileSize = 2;
 const initialBlackY = matrixSize / 2; // Starting in the middle of the matrix
 const initialBlackX = 0;
 const initialRotation = 0;
-const triangleBase = 6; // Base width of the triangle in grid units
-const triangleHeight = 8; // Height of the triangle in grid units
+const triangleBase = 3; // Base width of the triangle in grid units
+const triangleHeight = 4; // Height of the triangle in grid units
 
 const Dejarik = () => {
   const [blackX, setBlackX] = useState(initialBlackX);
@@ -34,9 +34,6 @@ const Dejarik = () => {
   // New state variable for collision square side length
   const [collisionSquareSide, setCollisionSquareSide] = useState(triangleBase);
 
-  // New state variable for the circle diameter
-  const [circleDiameter, setCircleDiameter] = useState(triangleBase); // Initial circle diameter
-
   const moveBlack = useCallback((direction) => {
     const radians = (Math.PI / 180) * rotation;
     const xSpeed = Math.cos(radians) * 2;
@@ -49,8 +46,8 @@ const Dejarik = () => {
 
     setBlackY((prevY) => {
       const newY = prevY + (direction === 'up' ? ySpeed : 0);
-      const topBoundary = -3; // Allow exiting top by 5px
-      const bottomBoundary = matrixSize - 6; // Allow exiting bottom by 5px
+      const topBoundary = -1;        // Allow exiting top by 5px
+      const bottomBoundary = matrixSize - 5; // Allow exiting bottom by 5px
       return Math.min(Math.max(newY, topBoundary), bottomBoundary);
     });
   }, [rotation]);
@@ -151,7 +148,7 @@ const Dejarik = () => {
 
     // Adjust the collision area to be slightly below the center of the triangle
     const adjustedBlackX = blackX;
-    const adjustedBlackY = blackY + triangleHeight / 2; // Shift the collision area downwards
+    const adjustedBlackY = blackY + (triangleHeight / 2); // Shift the collision area downwards
 
     redSubMatrices.forEach((r) => {
       const circleCenterX = r.x + projectileSize / 2;
@@ -343,23 +340,13 @@ const Dejarik = () => {
             />
           </div>
           <div>
-            <label>Collision Square Side Length: {collisionSquareSide}</label>
+            <label>Spaceship Impact Zone: {collisionSquareSide}</label>
             <input
               type="range"
               min="1"
               max="20"
               value={collisionSquareSide}
               onChange={(e) => setCollisionSquareSide(parseInt(e.target.value))}
-            />
-          </div>
-          <div>
-            <label>Circle Diameter: {circleDiameter}</label>
-            <input
-              type="range"
-              min="1"
-              max="20"
-              value={circleDiameter}
-              onChange={(e) => setCircleDiameter(parseInt(e.target.value))}
             />
           </div>
           <button className="dejarik-mute-button" onClick={toggleMute}>
