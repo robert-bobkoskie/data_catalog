@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/data_catalog/static/css/main.ad45a640.css",
-    "main.js": "/data_catalog/static/js/main.22433704.js",
+    "main.css": "/data_catalog/static/css/main.3b73bf41.css",
+    "main.js": "/data_catalog/static/js/main.1a1378bf.js",
     "static/js/453.0cba6432.chunk.js": "/data_catalog/static/js/453.0cba6432.chunk.js",
     "static/media/Explosion_Blast.wav": "/data_catalog/static/media/Explosion_Blast.14e9780973db2a915325.wav",
     "static/media/Coffee_Pot.gif": "/data_catalog/static/media/Coffee_Pot.2e5355063021fcccab61.gif",
@@ -16,12 +16,12 @@
     "static/media/Verticle_Pipe.jpg": "/data_catalog/static/media/Verticle_Pipe.2339c40dbad3b1d5bed9.jpg",
     "static/media/Python_Logo.jfif": "/data_catalog/static/media/Python_Logo.1b38f1bbf2da4be0e94b.jfif",
     "index.html": "/data_catalog/index.html",
-    "main.ad45a640.css.map": "/data_catalog/static/css/main.ad45a640.css.map",
-    "main.22433704.js.map": "/data_catalog/static/js/main.22433704.js.map",
+    "main.3b73bf41.css.map": "/data_catalog/static/css/main.3b73bf41.css.map",
+    "main.1a1378bf.js.map": "/data_catalog/static/js/main.1a1378bf.js.map",
     "453.0cba6432.chunk.js.map": "/data_catalog/static/js/453.0cba6432.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ad45a640.css",
-    "static/js/main.22433704.js"
+    "static/css/main.3b73bf41.css",
+    "static/js/main.1a1378bf.js"
   ]
 }
