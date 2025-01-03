@@ -1,48 +1,48 @@
 /* src/pages/LandingPage.css */
 
-.landing-container {
+.landing-landing-container {
   padding: 20px;
   text-align: left;
 }
 
-.landing-header {
+.landing-landing-header {
   font-size: 2.5em;
   color: #2c3e50;
   text-align: center;
 }
 
-.landing-text {
+.landing-landing-text {
   font-size: 1.2em;
   color: #34495e;
   line-height: 1.6em;
   margin-top: 20px;
-  text-align: justify; /* Add this line to justify the text */
+  text-align: justify;
 }
 
-.indented-text {
-  margin-left: 20px; /* Add margin to the left */
+.landing-indented-text {
+  margin-left: 20px;
 }
 
-.button-container {
+.landing-button-container {
   margin-top: 20px;
-  margin-left: 20px; /* Add margin to the left */
+  margin-left: 20px;
   text-align: left;
 }
 
-.greek-container {
-  background-color: #282c34; /* Same background color as header */
+.landing-greek-container {
+  background-color: #282c34;
   padding: 20px;
   display: flex;
-  justify-content: flex-start; /* Left justify the Greek letters */
+  justify-content: flex-start;
   gap: 20px;
   text-align: left;
   margin-top: 20px;
-  margin-left: 20px; /* Add margin to the left to match other elements */
-  margin-right: auto; /* Center the div horizontally */
-  width: fit-content; /* Adjust the width to fit the content */
+  margin-left: 20px;
+  margin-right: auto;
+  width: fit-content;
 }
 
-.button {
+.landing-button {
   background-color: #2c3e50;
   color: #ffffff;
   padding: 10px 20px;
@@ -50,32 +50,43 @@
   border: none;
   cursor: pointer;
   margin: 10px 0;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, text-decoration 0.3s ease;
 }
 
-.button:hover {
+.landing-button:hover {
   background-color: #34495e;
+  text-decoration: underline;
 }
 
-.greek {
+.landing-greek {
   font-size: 3.3em;
-  color: yellow; /* Same color as in the header */
+  color: yellow;
   cursor: pointer;
   margin: 0 10px 0 0;
   transition: opacity 0.3s ease;
 }
 
-.greek:hover {
+.landing-greek:hover {
   opacity: 0.5;
 }
 
-.donut {
+.landing-donut {
   height: 55px;
   cursor: pointer;
   margin-right: 10px;
   transition: opacity 0.3s ease;
 }
 
-.donut:hover {
+.landing-donut:hover {
   opacity: 0.7;
+}
+
+.landing-button-text-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.landing-button-text-container .landing-button {
+  margin-right: 20px;
 }
